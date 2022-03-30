@@ -57,7 +57,7 @@ function SignIn() {
           </div>
           <div className="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
             <div className="w-full">
-            <h1 className="mb-4 text-xl sm:text-2xl font-semibold text-gray-700 ">
+              <h1 className="mb-4 text-xl sm:text-2xl font-semibold text-gray-700 ">
                 Welcome to Global House
               </h1>
               <h1 className="mb-4 text-xl font-semibold text-gray-700 ">
@@ -67,7 +67,7 @@ function SignIn() {
                 <label className="block text-sm">
                   <span className="text-gray-700 ">Email</span>
                   <input
-                    className="block w-full mt-1 text-sm focus:border-purple-400 focus:outline-none focus:shadow-outline-purple  border-2 p-2 form-input"
+                    className="block w-full mt-1 text-sm focus:border-primary focus:outline-none focus:shadow-outline-primary  border-2 p-2 form-input"
                     type="email"
                     id="email"
                     placeholder="Your email"
@@ -78,7 +78,7 @@ function SignIn() {
                 <label className="block mt-4 text-sm">
                   <span className="text-gray-700 ">Password</span>
                   <input
-                    className="block w-full mt-1 text-sm  focus:border-purple-400 focus:outline-none focus:shadow-outline-purple border-2 p-2  form-input"
+                    className="block w-full mt-1 text-sm  focus:border-primary focus:outline-none focus:shadow-outline-primary border-2 p-2  form-input"
                     type="password"
                     id="password"
                     placeholder="Your password"
@@ -89,7 +89,7 @@ function SignIn() {
 
                 <button
                   type="submit"
-                  className="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-primary border border-transparent rounded-lg active:bg-primary-focus hover:bg-primary-focus focus:outline-none focus:shadow-outline-purple"
+                  className="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-primary border border-transparent rounded-lg active:bg-primary-focus hover:bg-primary-focus focus:outline-none focus:shadow-outline-primary"
                 >
                   Sign in
                 </button>
