@@ -73,6 +73,9 @@ function SignUp() {
           </div>
           <div className="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
             <div className="w-full">
+              <h1 className="mb-4 text-xl sm:text-2xl font-semibold text-gray-700 ">
+                Welcome to Global House
+              </h1>
               <h1 className="mb-4 text-xl font-semibold text-gray-700 ">
                 Create account
               </h1>
@@ -113,7 +116,7 @@ function SignUp() {
 
                 <button
                   type="submit"
-                  className="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+                  className="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-primary border border-transparent rounded-lg active:bg-secondary-focus hover:bg-primary-focus focus:outline-none focus:shadow-outline-purple"
                 >
                   Create account
                 </button>
@@ -127,10 +130,18 @@ function SignUp() {
               <p className="mt-1">
                 <Link
                   to="/sign-in"
-                  className="text-sm font-medium text-purple-600 hover:underline"
+                  className="text-sm font-medium text-primary hover:underline"
                 >
-                  <span>Already had account</span>
+                  <span>Already had account?</span>
                 </Link>
+              </p>
+              <p className="mt-10 text-xs">
+                *The information provided above will be used for recycling
+                events only. After the event, all of your data will be deleted.
+              </p>
+              <br />
+              <p className="text-xs">
+                *ご記入いただいた情報は、リサイクルイベントのみに使用します。イベント終了後、その情報はすべて削除されます。
               </p>
             </div>
           </div>

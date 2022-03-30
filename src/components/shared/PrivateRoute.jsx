@@ -7,7 +7,7 @@ const PrivateRoute = () => {
     return <h1>Loading status..</h1>;
   }
   //console.log("PrivateRoute:", user);
-  return loggedIn ? <Outlet /> : <Navigate to="/sign-in" />;
+  return loggedIn ? <Outlet /> : <Navigate to="/sign-up" />;
 };
 
 export default PrivateRoute;

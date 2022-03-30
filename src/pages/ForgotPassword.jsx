@@ -44,7 +44,7 @@ function ForgotPassword() {
                 <label class="block text-sm">
                   <span class="text-gray-700 ">Email</span>
                   <input
-                    class="block w-full mt-1 text-sm  focus:border-purple-400 focus:outline-none focus:shadow-outline-purple border-2 p-2 form-input"
+                    class="block w-full mt-1 text-sm  focus:border-primary focus:outline-none focus:shadow-outline-purple border-2 p-2 form-input"
                     placeholder="xxx@gmail.com"
                     type="email"
                     id="email"
@@ -53,14 +53,14 @@ function ForgotPassword() {
                   />
                 </label>
 
-                <button class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                <button class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-primary border border-transparent rounded-lg active:bg-primary-focus hover:bg-primary-focus focus:outline-none focus:shadow-outline-purple">
                   Recover password
                 </button>
               </form>
               <p className="mt-1">
                 <Link
                   to="/sign-in"
-                  className=" text-sm font-medium text-purple-600 hover:underline"
+                  className=" text-sm font-medium text-primary hover:underline"
                 >
                   <span>Back to sign in</span>
                 </Link>
