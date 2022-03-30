@@ -2,26 +2,25 @@ const StepData = [
   {
     id: 1,
     title: "Check the items",
-    description:
-      "Skate ipsum dolor sit amet, alley oop vert mute-air Colby Carter flail 180 berm.",
+    description: "Check all the available items below.",
   },
   {
     id: 2,
     title: "Pick the items",
     description:
-      "A flower in my garden, a mystery in my panties. Heart attack never stopped.",
+      'You can pick any items that you want by pressing "I want this" button.',
   },
   {
     id: 3,
     title: "Join the drawing",
     description:
-      "Chase ball of string eat plants, meow, and throw up because I ate plants going.",
+      "The items of your choice will be decided by drawing. (Online: by Zoom)",
   },
   {
     id: 4,
     title: "Come to Assembly Room",
     description:
-      "Bro ipsum dolor sit amet gaper backside single track, manny Bike epic clipless.",
+      "Items won in the drawing will be distributed immediately after the drawing at the Assembly Room.",
   },
 ];
 

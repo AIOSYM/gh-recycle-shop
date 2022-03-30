@@ -3,7 +3,7 @@ function Banner({ user }) {
     <section className="relative bg-white">
       <img
         className="absolute inset-0 object-[75%] sm:object-[25%] object-cover w-full h-full opacity-25 sm:opacity-100"
-        src="https://images.unsplash.com/photo-1601758003122-53c40e686a19"
+        src={require("../assets/img/cover-min.png")}
         alt="Couple on a bed with a dog"
       />
 
@@ -13,14 +13,14 @@ function Banner({ user }) {
         <div className="max-w-xl text-center sm:text-left">
           <h1 className="text-3xl italic font-light pb-1">
             {`Hello${user.displayName ? ", " : " "}`}
-            <span className="underline decoration-rose-700">
+            <span className="underline decoration-secondary">
               {user.displayName ? `${user.displayName}` : ""}
             </span>
             👋
           </h1>
           <h1 className="text-3xl font-extrabold sm:text-5xl">
             Global House
-            <strong className="font-extrabold text-rose-700 sm:block">
+            <strong className="font-extrabold text-secondary sm:block">
               Recyling Event
             </strong>
           </h1>

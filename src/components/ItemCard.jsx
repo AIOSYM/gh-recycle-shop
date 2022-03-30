@@ -5,39 +5,37 @@ import ItemContext from "../context/ItemContext";
 function ItemCard({ id, item }) {
   const { handleWishListButton, isAddedToWishList } = useContext(ItemContext);
   const [isSelected, setIsSelected] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     isAddedToWishList(id) ? setIsSelected(true) : setIsSelected(false);
   }, []);
 
   return (
-    <div className="card card-side bg-base-100 border shadow-xl duration-300 transform hover:-translate-y-2">
+    <div class="card w-96 bg-base-100 shadow-xl">
       <figure>
-        <img
-          src={item.imgUrls[0]}
-          alt="Furniture"
-          className="object-contain h-40 md:h-60 "
-        />
+        <img src={item.imgUrls[0]} alt="item" />
       </figure>
-      <div className="card-body">
-        <h2 className="card-title text-md sm:text-2xl md:text-4xl">
+      <div class="card-body justify-between">
+        <h2 class="card-title">
           {item.name}
+          <div class="badge badge-secondary">{item.price}円</div>
         </h2>
-        <p className="text-xs sm:text-md">{item.description}</p>
-        <p className="text-xs sm:text-md">
-          Available Quantity: {item.quantity}
-        </p>
-        <p className="text-xs sm:text-md">Price: {item.price} Yen</p>
-        <div className="text-xs underline text-primary">
-          <button onClick={() => navigate(`/item/${id}`, {state:item} ) }>
-            More photos
-          </button>
+        <div className="flex flex-col">
+          <p className="text-xs sm:text-base">{item.description}</p>
+          <p className="text-xs sm:text-base">
+            Available Quantity: {item.quantity}
+          </p>
+          <div className="text-xs underline text-primary md:text-base">
+            <button onClick={() => navigate(`/item/${id}`, { state: item })}>
+              <p className="underline">More photos</p>
+            </button>
+          </div>
         </div>
         <div className="card-actions justify-end ">
           <button
             className={`btn ${
-              isSelected ? "btn btn-secondary" : "btn-primary"
+              isSelected ? "btn btn-error" : "btn-secondary"
             } text-xs btn-sm md:text-md md:btn-md`}
             onClick={() => {
               setIsSelected(!isSelected);
