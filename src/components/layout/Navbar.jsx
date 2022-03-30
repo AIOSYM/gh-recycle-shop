@@ -1,25 +1,38 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaRecycle } from "react-icons/fa";
+import { getAuth } from "firebase/auth";
 
-function Navbar({ signOut }) {
+function Navbar() {
+  const auth = getAuth();
+  let navigate = useNavigate();
+
+  const handleSignOut = () => {
+    auth.signOut();
+    navigate("/sign-in");
+  };
+
+  const goToAccount = () => {
+    navigate("/account");
+  };
+
   return (
     <div className="navbar bg-base-200">
       <div className="flex-1">
         <Link className="btn btn-ghost normal-case text-xl" to="/">
           <div className="flex flex-row items-center justify-between">
-            <FaRecycle className="inline mx-2" />
-            <p>GH Recyling Shop</p>
+            <FaRecycle className="inline mx-2 text-xs sm:text-xl" />
+            <p className="text-xs sm:text-xl">GH Recyling Shop</p>
           </div>
         </Link>
       </div>
       <div className="flex-none">
-        <ul className="menu menu-horizontal p-0">
+        <ul className="menu menu-horizontal p-0 text-xs sm:text-sm md:text-lg">
           <li>
-            <Link to="account">My account</Link>
+            <p onClick={goToAccount}>My account</p>
           </li>
 
           <li>
-            <a onClick={signOut}>Sign out</a>
+            <a onClick={handleSignOut}>Sign out</a>
           </li>
         </ul>
       </div>

@@ -5,13 +5,7 @@ import { useEffect, useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-import {
-  doc,
-  addDoc,
-  collection,
-  serverTimestamp,
-  setDoc,
-} from "firebase/firestore";
+import { doc, collection, serverTimestamp, setDoc } from "firebase/firestore";
 import { db } from "../firebase.config";
 import { toast } from "react-toastify";
 
@@ -21,7 +15,7 @@ function Drawing() {
   const [allParticipants, setAllParticipants] = useState([]);
   const [receivedParticipants, setReceivedParticipants] = useState([]);
   const [currentParticipants, setCurrentParticipants] = useState([]);
-  const [drawingResults, setDrawingResult] = useState([]);
+  const [drawingResults, setDrawingResult] = useState({});
   const [isUploading, setIsUploading] = useState(false);
 
   const location = useLocation();
@@ -79,17 +73,20 @@ function Drawing() {
         );
         drawingList = [...newDrawingList];
         if (drawingList.length === 0) {
-          console.log("Run out of wishlist");
+          //console.log("Run out of wishlist");
         }
       }
     }
+    const resultObj = {
+      id: tableData[itemId].id,
+      name: tableData[itemId].name,
+      results: currentList,
+    };
     let drawingResult = {
       ...drawingResults,
-      [itemId]: {
-        name: tableData[itemId].name,
-        results: currentList,
-      },
+      [itemId]: resultObj,
     };
+
     setDrawingResult(drawingResult);
     setReceivedParticipants(receivedList);
     setCurrentParticipants(currentList);
@@ -101,6 +98,32 @@ function Drawing() {
       navigate(-1);
       return;
     }
+  };
+
+  // update each user winningItems
+  const updateUserWinningItems = async () => {
+    const allParticipantCopy = [...activeUsers];
+    const drawResultArr = Object.keys(drawingResults).map((key) => {
+      return drawingResults[key];
+    });
+    allParticipantCopy.forEach(async (user) => {
+      console.log("updatedData");
+      const name = user.data.name;
+      const userId = user.id;
+      const winningItemsFromDraw = drawResultArr.filter((item) =>
+        item.results.includes(name)
+      );
+      const winningItemsId = winningItemsFromDraw.map((item) => item.id);
+
+      let updatedData = { ...user.data, winningItems: winningItemsId };
+      console.log(name, winningItemsFromDraw);
+      try {
+        await setDoc(doc(db, "users", userId), updatedData);
+        toast.success("Update was successful");
+      } catch (error) {
+        toast.error(error);
+      }
+    });
   };
 
   const uploadToDatabase = async () => {
@@ -117,7 +140,7 @@ function Drawing() {
     } catch (error) {
       toast.error(error);
     }
-    console.log("Save result");
+    await updateUserWinningItems();
   };
 
   const handleBack = () => {
@@ -139,7 +162,7 @@ function Drawing() {
   };
 
   return (
-    <div className="flex flex-col container p-6">
+    <div className="flex flex-col p-6">
       <h1 className="text-3xl">
         Drawing{` (${itemIndex + 1}/${tableData.length})`}
       </h1>
@@ -161,6 +184,7 @@ function Drawing() {
         >
           Start drawing
         </button>
+
         <div className="carousel-wrapper w-1/2 self-center">
           <Carousel>
             {images.map((img, index) => {

@@ -1,6 +1,5 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { useAuthStatus } from "../../hooks/useAuthStatus";
-import { useState, useEffect } from "react";
 
 const PrivateRouteAdmin = () => {
   const { loggedIn, checkingStatus, user } = useAuthStatus();

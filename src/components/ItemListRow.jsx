@@ -17,6 +17,9 @@ function ItemListRow({ id, data }) {
         <td className="px-4 py-2 text-gray-700 whitespace-nowrap">
           {data.wantedBy.join(",")}
         </td>
+        <td className="px-4 py-2 text-gray-700 whitespace-nowrap">
+          {data.winningBy.join(",")}
+        </td>
       </tr>
     </>
   );
