@@ -38,6 +38,9 @@ function ItemsTable({ tableData, allItems, activeUsers }) {
               <th className="px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap">
                 Name List
               </th>
+              <th className="px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap">
+                Grantor List
+              </th>
             </tr>
           </thead>
 

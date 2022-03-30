@@ -4,7 +4,7 @@ import ItemCard from "./ItemCard";
 import GridLayoutItem from "./layout/GridLayoutItem";
 
 function ItemList() {
-  const { items, itemsLoading, userLoading} = useContext(ItemContext);
+  const { items, itemsLoading, userLoading } = useContext(ItemContext);
 
   if (itemsLoading || userLoading) {
     return <h1>Loading available items..</h1>;

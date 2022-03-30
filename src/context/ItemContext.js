@@ -34,6 +34,7 @@ export const ItemProvider = ({ children }) => {
 
   // fetching the data from firbase
   const fetchItems = async () => {
+    console.log("API CALL:ItemContext");
     try {
       const itemsRef = collection(db, "items");
       const q = query(itemsRef, orderBy("popularity", "desc"));
@@ -59,6 +60,7 @@ export const ItemProvider = ({ children }) => {
 
   // fetching a user from firestore
   const fetchUserData = async () => {
+    console.log("API CALL:ItemContext");
     const auth = getAuth();
     setUser(auth.currentUser);
 
@@ -102,6 +104,7 @@ export const ItemProvider = ({ children }) => {
         (id) => id !== itemId
       );
     }
+    console.log("API CALL:ItemContext(write)");
     const docRef = doc(db, "users", user.uid);
     await updateDoc(docRef, userDataCopy);
     setUserData(userDataCopy);

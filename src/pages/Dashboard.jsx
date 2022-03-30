@@ -13,6 +13,7 @@ function Dashboard() {
   const [activeUsers, setActiveUsers] = useState(null);
 
   useEffect(() => {
+    console.log("API CALL:Dashboard");
     setLoading(true);
     const fetchData = async () => {
       const [fetchAllUsers, fetchAllItems] = await Promise.all([
@@ -44,7 +45,7 @@ function Dashboard() {
         setLoading(false);
       })
       .catch((error) => {
-        console.log(error);
+        //console.log(error);
       });
   }, []);
 
@@ -54,10 +55,13 @@ function Dashboard() {
         const tableData = [];
         allItems.forEach((item) => {
           let wantedBy = [];
-
+          let winningBy = [];
           allUsers.forEach((user) => {
             if (user.data.wantedItems.includes(item.id)) {
               wantedBy.push(user.data.name);
+            }
+            if (user.data.winningItems.includes(item.id)) {
+              winningBy.push(user.data.name);
             }
           });
           return tableData.push({
@@ -66,6 +70,7 @@ function Dashboard() {
             popularity: wantedBy.length,
             quantity: item.data.quantity,
             wantedBy: wantedBy,
+            winningBy: winningBy,
           });
         });
 
@@ -88,7 +93,7 @@ function Dashboard() {
   }
 
   return (
-    <div className="container p-4">
+    <div className="p-4">
       <h1 className="text-3xl font-extrabold sm:text-5xl">Dashboard</h1>
       <Statistic
         numUsers={activeUsers.length}
