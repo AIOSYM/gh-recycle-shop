@@ -83,7 +83,7 @@ function SignUp() {
                 <label className="block text-sm">
                   <span className="text-gray-700 ">Name</span>
                   <input
-                    className="block w-full mt- text-sm focus:border-purple-400 focus:outline-none focus:shadow-outline-purple  border-2 p-2 form-input"
+                    className="block w-full mt- text-sm focus:border-primary focus:outline-none focus:shadow-outline-primary  border-2 p-2 form-input"
                     type="text"
                     id="name"
                     placeholder="Your name"
@@ -94,7 +94,7 @@ function SignUp() {
                 <label className="block text-sm">
                   <span className="text-gray-700 ">Email</span>
                   <input
-                    className="block w-full mt-1 text-sm focus:border-purple-400 focus:outline-none focus:shadow-outline-purple  border-2 p-2 form-input"
+                    className="block w-full mt-1 text-sm focus:border-primary focus:outline-none focus:shadow-outline-primary  border-2 p-2 form-input"
                     type="email"
                     id="email"
                     placeholder="Your email"
@@ -105,7 +105,7 @@ function SignUp() {
                 <label className="block mt-4 text-sm">
                   <span className="text-gray-700 ">Password</span>
                   <input
-                    className="block w-full mt-1 text-sm  focus:border-purple-400 focus:outline-none focus:shadow-outline-purple border-2 p-2  form-input"
+                    className="block w-full mt-1 text-sm  focus:border-primary focus:outline-none focus:shadow-outline-primary border-2 p-2  form-input"
                     type="password"
                     id="password"
                     placeholder="Your password (more than 6 characters)"
@@ -116,7 +116,7 @@ function SignUp() {
 
                 <button
                   type="submit"
-                  className="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-primary border border-transparent rounded-lg active:bg-secondary-focus hover:bg-primary-focus focus:outline-none focus:shadow-outline-purple"
+                  className="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-primary border border-transparent rounded-lg active:bg-secondary-focus hover:bg-primary-focus focus:outline-none focus:shadow-outline-primary"
                 >
                   Create account
                 </button>
