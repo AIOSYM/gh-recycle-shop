@@ -12,14 +12,14 @@ function ItemCard({ id, item }) {
   }, []);
 
   return (
-    <div class="card w-96 bg-base-100 shadow-xl">
+    <div className="card w-96 bg-base-100 shadow-xl duration-300 transform hover:-translate-y-2">
       <figure>
         <img src={item.imgUrls[0]} alt="item" />
       </figure>
-      <div class="card-body justify-between">
-        <h2 class="card-title">
+      <div className="card-body justify-between">
+        <h2 className="card-title">
           {item.name}
-          <div class="badge badge-secondary">{item.price}円</div>
+          <div className="badge badge-secondary">{item.price}円</div>
         </h2>
         <div className="flex flex-col">
           <p className="text-xs sm:text-base">{item.description}</p>

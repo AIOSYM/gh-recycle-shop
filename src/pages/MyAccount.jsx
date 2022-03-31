@@ -16,7 +16,7 @@ function MyAccount() {
 
   useEffect(() => {
     const fetchItems = async () => {
-      console.log("API CALL:MyAccount");
+      //console.log("API CALL:MyAccount");
       try {
         const querySnap = await getDocs(collection(db, "items"));
         const items = [];
@@ -38,7 +38,7 @@ function MyAccount() {
   useEffect(() => {
     const fetchSingleUser = async () => {
       if (user) {
-        console.log("API CALL:MyAccount");
+        //console.log("API CALL:MyAccount");
         try {
           const docRef = doc(db, "users", user.uid);
           const docSnap = await getDoc(docRef);
@@ -64,7 +64,7 @@ function MyAccount() {
   } else {
     const wantedItems = Array.from(userData.wantedItems);
     winningItemsId = Array.from(userData.winningItems);
-    console.log(winningItemsId);
+    //console.log(winningItemsId);
     wishListItems = wantedItems.map((id) => {
       return allItems.filter((item) => item.id === id).shift();
     });

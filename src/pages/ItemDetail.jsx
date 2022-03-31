@@ -7,7 +7,7 @@ function ItemDetail() {
   const location = useLocation();
   const item = location.state;
 
-  console.log(item);
+  //console.log(item);
 
   return <div className="flex flex-col ">
     <Navbar/>

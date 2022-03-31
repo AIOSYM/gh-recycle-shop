@@ -13,12 +13,13 @@ function Dashboard() {
   const [activeUsers, setActiveUsers] = useState(null);
 
   useEffect(() => {
-    console.log("API CALL:Dashboard");
+    //console.log("API CALL:Dashboard");
     setLoading(true);
     const fetchData = async () => {
       const [fetchAllUsers, fetchAllItems] = await Promise.all([
         getDocs(collection(db, "users")),
         getDocs(collection(db, "items")),
+        getDocs(collection(db, "catRef")),
       ]);
       const querySnapshotUsers = await fetchAllUsers;
       const querySnapshotItems = await fetchAllItems;
@@ -28,6 +29,7 @@ function Dashboard() {
       .then(([querySnapshotUsers, querySnapshotItems]) => {
         const fetchUsers = [];
         const fetchItems = [];
+
         querySnapshotUsers.forEach((doc) => {
           return fetchUsers.push({
             id: doc.id,
@@ -42,6 +44,7 @@ function Dashboard() {
         });
         setAllUsers(fetchUsers);
         setAllItems(fetchItems);
+
         setLoading(false);
       })
       .catch((error) => {
@@ -67,6 +70,7 @@ function Dashboard() {
           return tableData.push({
             id: item.id,
             name: item.data.name,
+            catRef: item.data.catRef,
             popularity: wantedBy.length,
             quantity: item.data.quantity,
             wantedBy: wantedBy,
@@ -89,7 +93,7 @@ function Dashboard() {
   }, [allUsers, allItems]);
 
   if (loading) {
-    return <h1></h1>;
+    return <h1>User loading...</h1>;
   }
 
   return (
