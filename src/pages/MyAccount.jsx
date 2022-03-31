@@ -60,7 +60,7 @@ function MyAccount() {
   let wishListItems = [];
   let winningItemsId = [];
   if (loadItems || !userData) {
-    return <h1>Loading items..</h1>;
+    return <h1></h1>;
   } else {
     const wantedItems = Array.from(userData.wantedItems);
     winningItemsId = Array.from(userData.winningItems);

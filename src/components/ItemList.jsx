@@ -7,7 +7,7 @@ function ItemList() {
   const { items, itemsLoading, userLoading } = useContext(ItemContext);
 
   if (itemsLoading || userLoading) {
-    return <h1>Loading available items..</h1>;
+    return <h1></h1>;
   }
   return (
     <div className="flex flex-col w-screen">

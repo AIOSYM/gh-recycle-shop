@@ -2,13 +2,14 @@ const StepData = [
   {
     id: 1,
     title: "Check the items",
-    description: "Check all the available items below.",
+    description:
+      "Check all the available items below. Click on [More photos] to see more photos and detail.",
   },
   {
     id: 2,
     title: "Pick the items",
     description:
-      'You can pick any items that you want by pressing "I want this" button.',
+      'You can pick any items that you want by pressing [I want this] button.',
   },
   {
     id: 3,

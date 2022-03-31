@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -9,6 +10,7 @@ import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase.config";
 import { toast } from "react-toastify";
 import OAuth from "./OAuth";
+import WillBeOpen from "./WillBeOpen";
 
 function SignUp() {
   const [formData, setFormData] = useState({
@@ -20,6 +22,8 @@ function SignUp() {
   const { name, email, password } = formData;
 
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const key = searchParams.get("_user");
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -58,6 +62,10 @@ function SignUp() {
       toast.error("Something went wrong with the registration!");
     }
   };
+
+  if (process.env.REACT_APP_IS_OPENED && key !== "haha") {
+    return <WillBeOpen />;
+  }
 
   return (
     <div className="flex items-center min-h-screen p-6 bg-gray-50">
