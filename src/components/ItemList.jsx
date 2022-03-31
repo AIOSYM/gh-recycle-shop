@@ -11,17 +11,19 @@ function ItemList() {
   }
   return (
     <div className="flex flex-col w-screen">
-      <div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
+      <div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12 py-10">
         <p className="inline-block px-3 py-px mb-4 text-md lg:text-2xl font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
           Recycling Items | リサイクル物品
         </p>
         <div className="border">
           <p className="inline-block px-3 mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
-            Please select any items that you want
+            Please select any items that you want before the drawing session
+            starts
           </p>
           <br />
           <p className="inline-block px-3  mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
-            「I want this」ボタンで欲しい物品を選んでください
+            抽選会が始まるまでに「I want
+            this」ボタンで欲しい物品を選んでください
           </p>
         </div>
       </div>

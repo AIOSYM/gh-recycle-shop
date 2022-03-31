@@ -15,13 +15,14 @@ function Drawing() {
   const [allParticipants, setAllParticipants] = useState([]);
   const [receivedParticipants, setReceivedParticipants] = useState([]);
   const [currentParticipants, setCurrentParticipants] = useState([]);
+  const [currentCatRef, setCurrentCatRef] = useState({});
   const [drawingResults, setDrawingResult] = useState({});
   const [isUploading, setIsUploading] = useState(false);
 
   const location = useLocation();
   let navigate = useNavigate();
   const messageState = location.state;
-  const { tableData, allItems, activeUsers } = messageState;
+  const { tableData, allItems, activeUsers} = messageState;
 
   const numAllItems = allItems.length;
 
@@ -40,14 +41,25 @@ function Drawing() {
 
   const performDrawingForItem = (itemId) => {
     const item = tableData[itemId];
+    const catRef = item.catRef;
     const wantedBy = item.wantedBy;
     const available = item.quantity;
 
     let receivedList = [...receivedParticipants];
+    let currentCatRefObj = { ...currentCatRef };
+    let prohibitedList = [];
+
+    if (currentCatRef[catRef]) {
+      prohibitedList = Array.from(currentCatRefObj[catRef]);
+    }
+
     let drawingList = [...wantedBy];
     let currentList = [];
     let remaining = available;
-    // rest the receiveList if all participants win any item
+
+    //console.log("PROHIBITED FOR " + catRef + " : ", prohibitedList);
+
+    // reset the receiveList if all participants win any item, except those that get an item in that category
     if (receivedList.length === allParticipants.length) {
       receivedList = [];
     }
@@ -56,11 +68,14 @@ function Drawing() {
     if (drawingList.length === 0) {
       drawingList = [...wantedBy];
     }
+    // remove the user who already got item from the same category
+    drawingList = drawingList.filter((val) => !prohibitedList.includes(val));
     while (remaining > 0 && drawingList.length > 0) {
       const randomeIndex = Math.floor(Math.random() * drawingList.length);
       const randomWinner = drawingList[randomeIndex];
       receivedList.push(randomWinner);
       currentList.push(randomWinner);
+      prohibitedList.push(randomWinner);
       drawingList.splice(randomeIndex, 1);
       remaining = available - currentList.length;
 
@@ -70,6 +85,9 @@ function Drawing() {
         let newDrawingList = [...wantedBy];
         newDrawingList = newDrawingList.filter(
           (val) => !currentList.includes(val)
+        );
+        newDrawingList = newDrawingList.filter(
+          (val) => !prohibitedList.includes(val)
         );
         drawingList = [...newDrawingList];
         if (drawingList.length === 0) {
@@ -87,9 +105,19 @@ function Drawing() {
       [itemId]: resultObj,
     };
 
+    let newCurrentCatRef = {
+      ...currentCatRef,
+      [catRef]: prohibitedList,
+    };
+
+    if (currentList.length === 0) {
+      toast.info("No more winner");
+    }
+
     setDrawingResult(drawingResult);
     setReceivedParticipants(receivedList);
     setCurrentParticipants(currentList);
+    setCurrentCatRef(newCurrentCatRef);
   };
 
   const handleClick = async () => {
@@ -107,7 +135,7 @@ function Drawing() {
       return drawingResults[key];
     });
     allParticipantCopy.forEach(async (user) => {
-      console.log("updatedData");
+      //console.log("updatedData");
       const name = user.data.name;
       const userId = user.id;
       const winningItemsFromDraw = drawResultArr.filter((item) =>
@@ -116,7 +144,7 @@ function Drawing() {
       const winningItemsId = winningItemsFromDraw.map((item) => item.id);
 
       let updatedData = { ...user.data, winningItems: winningItemsId };
-      console.log(name, winningItemsFromDraw);
+      //console.log(name, winningItemsFromDraw);
       try {
         await setDoc(doc(db, "users", userId), updatedData);
         toast.success("Update was successful");
@@ -185,6 +213,22 @@ function Drawing() {
           Start drawing
         </button>
 
+        <div className="flex flex-row justify-center p-4">
+          {itemIndex !== 0 && (
+            <button
+              className="btn btn-circle btn-accent mx-2"
+              onClick={handleBack}
+            >
+              Back
+            </button>
+          )}
+          {itemIndex < numAllItems - 1 && (
+            <button className="btn btn-circle btn-accent" onClick={handleNext}>
+              Next
+            </button>
+          )}
+        </div>
+
         <div className="carousel-wrapper w-1/2 self-center">
           <Carousel>
             {images.map((img, index) => {
@@ -197,21 +241,7 @@ function Drawing() {
           </Carousel>
         </div>
       </div>
-      <div className="flex flex-row justify-center">
-        {itemIndex !== 0 && (
-          <button
-            className="btn btn-circle btn-accent mx-2"
-            onClick={handleBack}
-          >
-            Back
-          </button>
-        )}
-        {itemIndex < numAllItems - 1 && (
-          <button className="btn btn-circle btn-accent" onClick={handleNext}>
-            Next
-          </button>
-        )}
-      </div>
+
       {itemIndex === numAllItems - 1 && (
         <button
           className="btn btn-success mt-6"
