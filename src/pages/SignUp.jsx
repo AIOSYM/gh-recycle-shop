@@ -63,9 +63,9 @@ function SignUp() {
     }
   };
 
-  if (process.env.REACT_APP_IS_OPENED && key !== "haha") {
-    return <WillBeOpen />;
-  }
+  // if (process.env.REACT_APP_IS_OPENED && key !== "haha") {
+  //   return <WillBeOpen />;
+  // }
 
   return (
     <div className="flex items-center min-h-screen p-6 bg-gray-50">
