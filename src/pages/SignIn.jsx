@@ -61,11 +61,11 @@ function SignIn() {
                 Welcome to Global House
               </h1>
               <h1 className="mb-4 text-xl font-semibold text-gray-700 ">
-                Sign in
+                Sign in | ログイン
               </h1>
               <form onSubmit={onSubmit}>
                 <label className="block text-sm">
-                  <span className="text-gray-700 ">Email</span>
+                  <span className="text-gray-700 ">Email | Eメール</span>
                   <input
                     className="block w-full mt-1 text-sm focus:border-primary focus:outline-none focus:shadow-outline-primary  border-2 p-2 form-input"
                     type="email"
@@ -76,7 +76,7 @@ function SignIn() {
                   />
                 </label>
                 <label className="block mt-4 text-sm">
-                  <span className="text-gray-700 ">Password</span>
+                  <span className="text-gray-700 ">Password | パスワード</span>
                   <input
                     className="block w-full mt-1 text-sm  focus:border-primary focus:outline-none focus:shadow-outline-primary border-2 p-2  form-input"
                     type="password"
@@ -91,7 +91,8 @@ function SignIn() {
                   type="submit"
                   className="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-primary border border-transparent rounded-lg active:bg-primary-focus hover:bg-primary-focus focus:outline-none focus:shadow-outline-primary"
                 >
-                  Sign in
+                  Sign in <br />
+                  ログイン
                 </button>
               </form>
 
@@ -112,7 +113,7 @@ function SignIn() {
                   to="/sign-up"
                   className="text-sm font-medium text-primary hover:underline"
                 >
-                  <span>Create new account</span>
+                  <span>Create new account | アカウントの作成</span>
                 </Link>
               </p>
             </div>

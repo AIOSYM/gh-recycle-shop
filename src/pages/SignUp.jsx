@@ -85,22 +85,24 @@ function SignUp() {
                 Welcome to Global House
               </h1>
               <h1 className="mb-4 text-xl font-semibold text-gray-700 ">
-                Create account
+                Create account | アカウントの作成
               </h1>
               <form onSubmit={onSubmit}>
                 <label className="block text-sm">
-                  <span className="text-gray-700 ">Name</span>
+                  <span className="text-gray-700 ">
+                    Name | 名前 (ロマン字のみ記入してください)
+                  </span>
                   <input
                     className="block w-full mt- text-sm focus:border-primary focus:outline-none focus:shadow-outline-primary  border-2 p-2 form-input"
                     type="text"
                     id="name"
-                    placeholder="Your name"
+                    placeholder="Full name"
                     value={name}
                     onChange={onChange}
                   />
                 </label>
-                <label className="block text-sm">
-                  <span className="text-gray-700 ">Email</span>
+                <label className="block text-sm mt-4">
+                  <span className="text-gray-700 ">Email | Eメール</span>
                   <input
                     className="block w-full mt-1 text-sm focus:border-primary focus:outline-none focus:shadow-outline-primary  border-2 p-2 form-input"
                     type="email"
@@ -111,7 +113,7 @@ function SignUp() {
                   />
                 </label>
                 <label className="block mt-4 text-sm">
-                  <span className="text-gray-700 ">Password</span>
+                  <span className="text-gray-700 ">Password | パスワード</span>
                   <input
                     className="block w-full mt-1 text-sm  focus:border-primary focus:outline-none focus:shadow-outline-primary border-2 p-2  form-input"
                     type="password"
@@ -126,7 +128,8 @@ function SignUp() {
                   type="submit"
                   className="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-primary border border-transparent rounded-lg active:bg-secondary-focus hover:bg-primary-focus focus:outline-none focus:shadow-outline-primary"
                 >
-                  Create account
+                  Create account <br />
+                  登録
                 </button>
               </form>
 
@@ -140,7 +143,8 @@ function SignUp() {
                   to="/sign-in"
                   className="text-sm font-medium text-primary hover:underline"
                 >
-                  <span>Already had account?</span>
+                  <span>Already had account?</span>　<br />
+                  <span>アカウントがもう持っている?</span>
                 </Link>
               </p>
               <p className="mt-10 text-xs">

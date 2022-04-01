@@ -8,7 +8,7 @@ function Step() {
       <div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
         <div>
           <p className="inline-block px-3 py-px mb-4 text-md lg:text-2xl font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
-            Flow Of The Event | イベントの流れ 
+            Flow Of The Event | イベントの流れ
           </p>
         </div>
       </div>
@@ -23,6 +23,7 @@ function Step() {
               key={data.id}
               no={data.id}
               title={data.title}
+              titleJP={data.titleJP}
               description={data.description}
             />
           );
