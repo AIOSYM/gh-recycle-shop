@@ -27,6 +27,20 @@ function Announcement() {
             Zoomに参加する
           </a>
         </div>
+        <div className="p-4">
+          <div className="text-xs">
+            If you encounter any problem, please contact:{" "}
+            <span className="text-xs underline text-primary">
+              pich.david.es@tut.jp
+            </span>
+          </div>
+          <div className="text-xs">
+            お問い合わせ先：{" "}
+            <span className="text-xs underline text-primary">
+              pich.david.es@tut.jp
+            </span>
+          </div>
+        </div>
       </div>
     </div>
   );
