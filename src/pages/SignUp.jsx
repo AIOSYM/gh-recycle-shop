@@ -11,6 +11,7 @@ import { db } from "../firebase.config";
 import { toast } from "react-toastify";
 import OAuth from "./OAuth";
 import WillBeOpen from "./WillBeOpen";
+import Closed from "./Closed";
 
 function SignUp() {
   const [formData, setFormData] = useState({
@@ -66,6 +67,10 @@ function SignUp() {
   // if (process.env.REACT_APP_IS_OPENED && key !== "haha") {
   //   return <WillBeOpen />;
   // }
+
+  if (process.env.REACT_APP_IS_ENDED) {
+    return <Closed />;
+  }
 
   return (
     <div className="flex items-center min-h-screen p-6 bg-gray-50">
