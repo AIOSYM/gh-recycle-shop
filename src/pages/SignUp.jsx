@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -24,7 +23,9 @@ function SignUp() {
 
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
-  const key = searchParams.get("_user");
+  const key = searchParams.get("user");
+
+  console.log("key:", key);
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -64,12 +65,10 @@ function SignUp() {
     }
   };
 
-  // if (process.env.REACT_APP_IS_OPENED && key !== "haha") {
-  //   return <WillBeOpen />;
-  // }
-
-  if (process.env.REACT_APP_IS_ENDED) {
+  if (process.env.REACT_APP_IS_ENDED === "true") {
     return <Closed />;
+  } else if (process.env.REACT_APP_IS_OPENED === "false" && key !== "vip") {
+    return <WillBeOpen />;
   }
 
   return (

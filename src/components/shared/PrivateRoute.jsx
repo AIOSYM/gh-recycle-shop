@@ -6,7 +6,7 @@ const PrivateRoute = () => {
   if (checkingStatus) {
     return <h1></h1>;
   }
-  //console.log("PrivateRoute:", user);
+
   return loggedIn ? <Outlet /> : <Navigate to="/sign-up" />;
 };
 
