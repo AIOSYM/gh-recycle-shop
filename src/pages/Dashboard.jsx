@@ -4,6 +4,7 @@ import { db } from "../firebase.config";
 import { toast } from "react-toastify";
 import { Statistic } from "../components/Statistic";
 import ItemsTable from "../components/ItemsTable";
+import { AdminControls } from "../components/admin/AdminControls";
 
 function Dashboard() {
   const [allUsers, setAllUsers] = useState(null);
@@ -104,6 +105,7 @@ function Dashboard() {
         numItems={allItems.length}
         numWishList={tableData}
       />
+      <AdminControls/>
       <ItemsTable
         tableData={tableData}
         allItems={allItems}
