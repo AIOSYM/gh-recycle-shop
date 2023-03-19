@@ -12,6 +12,7 @@ import ForgotPassword from "./pages/ForgotPassword";
 import ItemDetail from "./pages/ItemDetail";
 import Dashboard from "./pages/Dashboard";
 import Drawing from "./pages/Drawing";
+import AddNewItem from "./pages/AddNewItem";
 
 function App() {
   return (
@@ -33,6 +34,9 @@ function App() {
           </Route>
           <Route path="/drawing" element={<PrivateRouteAdmin />}>
             <Route path="/drawing" element={<Drawing />} />
+          </Route>
+          <Route path="/add-new-item" element={<PrivateRouteAdmin />}>
+            <Route path="/add-new-item" element={<AddNewItem />} />
           </Route>
         </Routes>
       </Router>

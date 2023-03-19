@@ -13,14 +13,14 @@ function Dashboard() {
   const [tableData, setTableData] = useState([]);
   const [activeUsers, setActiveUsers] = useState(null);
 
+  const collectionPath = "2023";
+
   useEffect(() => {
-    //console.log("API CALL:Dashboard");
     setLoading(true);
     const fetchData = async () => {
       const [fetchAllUsers, fetchAllItems] = await Promise.all([
-        getDocs(collection(db, "users")),
-        getDocs(collection(db, "items")),
-        getDocs(collection(db, "catRef")),
+        getDocs(collection(db, `${collectionPath}/users/users`)),
+        getDocs(collection(db, `${collectionPath}/items/items`)),
       ]);
       const querySnapshotUsers = await fetchAllUsers;
       const querySnapshotItems = await fetchAllItems;
@@ -49,7 +49,7 @@ function Dashboard() {
         setLoading(false);
       })
       .catch((error) => {
-        //console.log(error);
+        console.log(error);
       });
   }, []);
 
@@ -105,7 +105,7 @@ function Dashboard() {
         numItems={allItems.length}
         numWishList={tableData}
       />
-      <AdminControls/>
+      <AdminControls />
       <ItemsTable
         tableData={tableData}
         allItems={allItems}

@@ -1,10 +1,9 @@
 import ItemListRow from "./ItemListRow";
 
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function ItemsTable({ tableData, allItems, activeUsers}) {
+function ItemsTable({ tableData, allItems, activeUsers }) {
   const [isUploading, setIsUploading] = useState(false);
   let navigate = useNavigate();
 
@@ -13,7 +12,11 @@ function ItemsTable({ tableData, allItems, activeUsers}) {
   });
 
   const startDrawing = async () => {
-    navigate("/drawing", { state: { tableData, allItems, activeUsers} });
+    if (tableData.length === 0) {
+      alert("No items to draw");
+      return;
+    }
+    navigate("/drawing", { state: { tableData, allItems, activeUsers } });
   };
 
   return (
