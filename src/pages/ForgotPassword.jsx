@@ -24,27 +24,27 @@ function ForgotPassword() {
   };
 
   return (
-    <div class="flex items-center min-h-screen p-6 bg-gray-50 ">
-      <div class="flex-1 h-full max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl ">
-        <div class="flex flex-col overflow-y-auto md:flex-row">
-          <div class="h-32 md:h-auto md:w-1/2">
+    <div className="flex items-center min-h-screen p-6 bg-gray-50 ">
+      <div className="flex-1 h-full max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl ">
+        <div className="flex flex-col overflow-y-auto md:flex-row">
+          <div className="h-32 md:h-auto md:w-1/2">
             <img
               aria-hidden="true"
-              class="object-cover w-full h-full "
+              className="object-cover w-full h-full "
               src={require("../assets/img/gh-front.JPG")}
               alt="Office"
             />
           </div>
-          <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
-            <div class="w-full">
-              <h1 class="mb-4 text-xl font-semibold text-gray-700 ">
+          <div className="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
+            <div className="w-full">
+              <h1 className="mb-4 text-xl font-semibold text-gray-700 ">
                 Forgot password
               </h1>
               <form onSubmit={onSubmit}>
-                <label class="block text-sm">
-                  <span class="text-gray-700 ">Email</span>
+                <label className="block text-sm">
+                  <span className="text-gray-700 ">Email</span>
                   <input
-                    class="block w-full mt-1 text-sm  focus:border-primary focus:outline-none focus:shadow-outline-purple border-2 p-2 form-input"
+                    className="block w-full mt-1 text-sm  focus:border-primary focus:outline-none focus:shadow-outline-purple border-2 p-2 form-input"
                     placeholder="xxx@gmail.com"
                     type="email"
                     id="email"
@@ -53,7 +53,7 @@ function ForgotPassword() {
                   />
                 </label>
 
-                <button class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-primary border border-transparent rounded-lg active:bg-primary-focus hover:bg-primary-focus focus:outline-none focus:shadow-outline-purple">
+                <button className="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-primary border border-transparent rounded-lg active:bg-primary-focus hover:bg-primary-focus focus:outline-none focus:shadow-outline-purple">
                   Recover password
                 </button>
               </form>

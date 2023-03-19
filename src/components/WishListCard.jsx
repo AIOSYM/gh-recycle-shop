@@ -7,7 +7,7 @@ function WishListCard({ item, isGrantor }) {
       <div className="card-body">
         <h2 className="card-title">
           {item.name}
-          <div class="badge badge-secondary">{item.price}円</div>
+          <div className="badge badge-secondary">{item.price}円</div>
         </h2>
 
         <p>{item.description}</p>
