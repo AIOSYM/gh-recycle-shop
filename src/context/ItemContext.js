@@ -67,8 +67,6 @@ export const ItemProvider = ({ children }) => {
     const auth = getAuth();
     setUser(auth.currentUser);
 
-    console.log(auth);
-
     const docRef = doc(db, userCollectionPath, auth.currentUser.uid);
     const docSnap = await getDoc(docRef);
 

@@ -38,7 +38,7 @@ function Drawing() {
   useEffect(() => {
     const images = () => {
       const item = allItems.find((item) => item.id === tableData[itemIndex].id);
-      console.log(item);
+
       setImages(item.data.imageUrls);
     };
     images();
@@ -138,9 +138,9 @@ function Drawing() {
     }
   };
 
-  useEffect(() => {
-    clearAllUserWinningItems();
-  }, []);
+  // useEffect(() => {
+  //   clearAllUserWinningItems();
+  // }, []);
 
   const getAllUsers = async () => {
     const docsRef = collection(db, userCollectionPath);
@@ -154,10 +154,10 @@ function Drawing() {
   // clear the winningItems for all user
   const clearAllUserWinningItems = async () => {
     const allUsers = await getAllUsers();
-    console.log("ALL", allUsers);
+    
     allUsers.forEach(async (user) => {
       const userId = user.id;
-      console.log("Before", user);
+
       const updatedData = { ...user, winningItems: [] };
       try {
         await setDoc(doc(db, userCollectionPath, userId), updatedData);
@@ -201,8 +201,10 @@ function Drawing() {
         data: { ...drawingResults },
         timestamp: serverTimestamp(),
       };
+      console.log(drawingResultsCopy);
       const newTableDataRef = doc(collection(db, resultCollectionPath));
       await setDoc(newTableDataRef, drawingResultsCopy);
+      console.log(drawingResultsCopy);
       toast.success("Upload was successful");
       setIsUploading(false);
     } catch (error) {

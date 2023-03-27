@@ -12,6 +12,9 @@ function ItemsTable({ tableData, allItems, activeUsers }) {
   });
 
   const startDrawing = async () => {
+    const confirm = window.confirm("Do you want to start drawing?");
+    if (!confirm) return;
+
     if (tableData.length === 0) {
       alert("No items to draw");
       return;

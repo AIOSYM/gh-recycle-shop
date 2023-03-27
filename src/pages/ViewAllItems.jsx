@@ -19,7 +19,6 @@ function ViewAllItems() {
     if (!isConfirm) return;
     const documentID = id;
     try {
-      console.log(documentID);
       await deleteDoc(doc(db, collectionPath, documentID));
       setItems((prevItems) =>
         prevItems.filter((item) => item.id !== documentID)
@@ -38,7 +37,6 @@ function ViewAllItems() {
       const docs = docsSnap.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
       docs.sort((a, b) => a.createdAt - b.createdAt);
       setItems(docs);
-      console.log(docs);
       setLoading(false);
     };
     getItems();
@@ -59,7 +57,11 @@ function ViewAllItems() {
       {loading ? (
         <div>Loading</div>
       ) : (
-        <Table tableData={items} deleteItem={deleteItem} setUpdateCount={setUpdateCount} />
+        <Table
+          tableData={items}
+          deleteItem={deleteItem}
+          setUpdateCount={setUpdateCount}
+        />
       )}
     </div>
   );

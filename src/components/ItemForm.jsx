@@ -100,7 +100,7 @@ function ItemForm({ submitType, id, setShowModal, setUpdateCount }) {
           const newStorageRef = ref(storage, fileName);
 
           const snapshot = await uploadBytes(newStorageRef, file.data);
-          console.log("Uploaded a file successfully!");
+        
 
           const url = await getDownloadURL(newStorageRef);
           urls.push(url);
