@@ -16,6 +16,7 @@ import {
 import { db, storage } from "../firebase.config";
 import Resizer from "react-image-file-resizer";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 function AddNewItem() {
   const [name, setName] = useState("");
@@ -25,8 +26,7 @@ function AddNewItem() {
   const [images, setImages] = useState([]);
   const [photoPreview, setPhotoPreview] = useState([]);
   const [imageUrls, setImageUrls] = useState([]);
-
-  const collectionPath = "2023/items";
+  const navigate = useNavigate();
 
   const MAX_WIDTH = 1080;
 
@@ -139,6 +139,7 @@ function AddNewItem() {
       price,
       quantity,
       imageUrls: urls,
+      createdAt: serverTimestamp(),
     };
     console.log("product", product);
     try {
@@ -161,73 +162,85 @@ function AddNewItem() {
     toast.success("Item added successfully!");
   };
 
+  const handleGoBack = () => {
+    navigate(-1);
+  };
+
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-4 p-8">
-      <label className="flex flex-col gap-1">
-        <span className="text-lg font-bold">Name*</span>
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          className="border border-gray-300 rounded-md p-2"
-        />
-      </label>
-      <label className="flex flex-col gap-1">
-        <span className="text-lg font-bold">Description</span>
-        <textarea
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          className="border border-gray-300 rounded-md p-2 resize-none h-32"
-        ></textarea>
-      </label>
-      <label className="flex flex-col gap-1">
-        <span className="text-lg font-bold">Price</span>
-        <input
-          type="number"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-          className="border border-gray-300 rounded-md p-2"
-        />
-      </label>
-      <label className="flex flex-col gap-1">
-        <span className="text-lg font-bold">Quantity*</span>
-        <input
-          type="number"
-          value={quantity}
-          onChange={(e) => setQuantity(e.target.value)}
-          className="border border-gray-300 rounded-md p-2"
-        />
-      </label>
-      <label className="flex flex-col gap-1">
-        <span className="text-lg font-bold">Images</span>
-        <input
-          type="file"
-          multiple
-          onChange={handlePhotoChange}
-          className="border border-gray-300 rounded-md p-2"
-        />
-      </label>
-      {photoPreview.length !== 0 && (
-        <div className="grid grid-cols-3 gap-4">
-          {photoPreview.map((photo, index) => {
-            return (
-              <img
-                key={index}
-                src={photo}
-                alt="Preview"
-                className="w-full h-auto"
-              />
-            );
-          })}
-        </div>
-      )}
-      <button
-        type="submit"
-        className="bg-blue-500 text-white rounded-md py-2 px-4 hover:bg-blue-700 transition duration-300"
-      >
-        Add Item
-      </button>
-    </form>
+    <div className="p-8">
+      <div>
+        <button className="btn btn-primary mb-8" onClick={handleGoBack}>
+          {" "}
+          {`< Go back to dashboard`}
+        </button>
+      </div>
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        <label className="flex flex-col gap-1">
+          <span className="text-lg font-bold">Name*</span>
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="border border-gray-300 rounded-md p-2"
+          />
+        </label>
+        <label className="flex flex-col gap-1">
+          <span className="text-lg font-bold">Description</span>
+          <textarea
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            className="border border-gray-300 rounded-md p-2 resize-none h-32"
+          ></textarea>
+        </label>
+        <label className="flex flex-col gap-1">
+          <span className="text-lg font-bold">Price</span>
+          <input
+            type="number"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+            className="border border-gray-300 rounded-md p-2"
+          />
+        </label>
+        <label className="flex flex-col gap-1">
+          <span className="text-lg font-bold">Quantity*</span>
+          <input
+            type="number"
+            value={quantity}
+            onChange={(e) => setQuantity(e.target.value)}
+            className="border border-gray-300 rounded-md p-2"
+          />
+        </label>
+        <label className="flex flex-col gap-1">
+          <span className="text-lg font-bold">Images</span>
+          <input
+            type="file"
+            multiple
+            onChange={handlePhotoChange}
+            className="border border-gray-300 rounded-md p-2"
+          />
+        </label>
+        {photoPreview.length !== 0 && (
+          <div className="grid grid-cols-3 gap-4">
+            {photoPreview.map((photo, index) => {
+              return (
+                <img
+                  key={index}
+                  src={photo}
+                  alt="Preview"
+                  className="w-full h-auto"
+                />
+              );
+            })}
+          </div>
+        )}
+        <button
+          type="submit"
+          className="bg-blue-500 text-white rounded-md py-2 px-4 hover:bg-blue-700 transition duration-300"
+        >
+          Add Item
+        </button>
+      </form>
+    </div>
   );
 }
 

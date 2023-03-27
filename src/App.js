@@ -13,6 +13,7 @@ import ItemDetail from "./pages/ItemDetail";
 import Dashboard from "./pages/Dashboard";
 import Drawing from "./pages/Drawing";
 import AddNewItem from "./pages/AddNewItem";
+import ViewAllItems from "./pages/ViewAllItems";
 
 function App() {
   return (
@@ -37,6 +38,9 @@ function App() {
           </Route>
           <Route path="/add-new-item" element={<PrivateRouteAdmin />}>
             <Route path="/add-new-item" element={<AddNewItem />} />
+          </Route>
+          <Route path="/view-all-items" element={<PrivateRouteAdmin />}>
+            <Route path="/view-all-items" element={<ViewAllItems />} />
           </Route>
         </Routes>
       </Router>
