@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase.config";
 import { toast } from "react-toastify";
@@ -14,6 +15,7 @@ function Dashboard() {
   const [activeUsers, setActiveUsers] = useState(null);
 
   const collectionPath = "2023";
+  const navigate = useNavigate();
 
   useEffect(() => {
     setLoading(true);
@@ -99,7 +101,12 @@ function Dashboard() {
 
   return (
     <div className="p-4">
-      <h1 className="text-3xl font-extrabold sm:text-5xl">Dashboard</h1>
+      <div>
+        <button className="underline" onClick={() => navigate("/")}>
+          Go to Home
+        </button>
+        <h1 className="text-3xl font-extrabold sm:text-5xl">Dashboard</h1>
+      </div>
       <Statistic
         numUsers={activeUsers.length}
         numItems={allItems.length}

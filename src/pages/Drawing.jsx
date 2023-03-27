@@ -5,13 +5,20 @@ import { useEffect, useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-import { doc, collection, serverTimestamp, setDoc } from "firebase/firestore";
+import {
+  doc,
+  collection,
+  serverTimestamp,
+  setDoc,
+  getDocs,
+} from "firebase/firestore";
 import { db } from "../firebase.config";
 import { toast } from "react-toastify";
 
 function Drawing() {
   const [itemIndex, setItemIndex] = useState(0);
   const [images, setImages] = useState([]);
+  const [allUsers, setAllUsers] = useState([]);
   const [allParticipants, setAllParticipants] = useState([]);
   const [receivedParticipants, setReceivedParticipants] = useState([]);
   const [currentParticipants, setCurrentParticipants] = useState([]);
@@ -24,6 +31,9 @@ function Drawing() {
   const messageState = location.state;
   const { tableData, allItems, activeUsers } = messageState;
   const numAllItems = allItems.length;
+
+  const userCollectionPath = "2023/users/users";
+  const resultCollectionPath = "2023/results/results";
 
   useEffect(() => {
     const images = () => {
@@ -128,6 +138,36 @@ function Drawing() {
     }
   };
 
+  useEffect(() => {
+    clearAllUserWinningItems();
+  }, []);
+
+  const getAllUsers = async () => {
+    const docsRef = collection(db, userCollectionPath);
+    const docsSnap = await getDocs(docsRef);
+    const docs = docsSnap.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+    docs.sort((a, b) => a.createdAt - b.createdAt);
+    setAllUsers(docs);
+    return docs;
+  };
+
+  // clear the winningItems for all user
+  const clearAllUserWinningItems = async () => {
+    const allUsers = await getAllUsers();
+    console.log("ALL", allUsers);
+    allUsers.forEach(async (user) => {
+      const userId = user.id;
+      console.log("Before", user);
+      const updatedData = { ...user, winningItems: [] };
+      try {
+        await setDoc(doc(db, userCollectionPath, userId), updatedData);
+        console.log("Clear all winning item!");
+      } catch (error) {
+        toast.error(error);
+      }
+    });
+  };
+
   // update each user winningItems
   const updateUserWinningItems = async () => {
     const allParticipantCopy = [...activeUsers];
@@ -146,8 +186,8 @@ function Drawing() {
       let updatedData = { ...user.data, winningItems: winningItemsId };
       //console.log(name, winningItemsFromDraw);
       try {
-        await setDoc(doc(db, "users", userId), updatedData);
-        toast.success("Update was successful");
+        await setDoc(doc(db, userCollectionPath, userId), updatedData);
+        toast.success("Notify the winning item to user successfully");
       } catch (error) {
         toast.error(error);
       }
@@ -161,7 +201,7 @@ function Drawing() {
         data: { ...drawingResults },
         timestamp: serverTimestamp(),
       };
-      const newTableDataRef = doc(collection(db, "drawingResults"));
+      const newTableDataRef = doc(collection(db, resultCollectionPath));
       await setDoc(newTableDataRef, drawingResultsCopy);
       toast.success("Upload was successful");
       setIsUploading(false);

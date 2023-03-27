@@ -82,7 +82,7 @@ export const ItemProvider = ({ children }) => {
 
   // fetch single item
   const fetchSingleItem = async (itemId) => {
-    const docRef = doc(db, "items", itemId);
+    const docRef = doc(db, itemCollectionPath, itemId);
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {

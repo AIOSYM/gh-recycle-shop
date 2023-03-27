@@ -8,7 +8,7 @@ function ItemsTable({ tableData, allItems, activeUsers }) {
   let navigate = useNavigate();
 
   tableData.sort((a, b) => {
-    return b.popularity - a.popularity;
+    return a.popularity - b.popularity;
   });
 
   const startDrawing = async () => {
