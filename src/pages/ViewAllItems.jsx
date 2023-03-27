@@ -9,13 +9,14 @@ import { toast } from "react-toastify";
 function ViewAllItems() {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [updateCount, setUpdateCount] = useState(0);
 
   const navigate = useNavigate();
   const collectionPath = "2023/items/items";
 
   const deleteItem = async (id) => {
-    // const isConfirm = confirm("このメッセージを削除しますか。");
-    // if (!isConfirm) return;
+    const isConfirm = window.confirm("Are you sure you want to delete this?");
+    if (!isConfirm) return;
     const documentID = id;
     try {
       console.log(documentID);
@@ -31,7 +32,7 @@ function ViewAllItems() {
   };
 
   useEffect(() => {
-    const getGuests = async () => {
+    const getItems = async () => {
       const docsRef = collection(db, collectionPath);
       const docsSnap = await getDocs(docsRef);
       const docs = docsSnap.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
@@ -40,8 +41,8 @@ function ViewAllItems() {
       console.log(docs);
       setLoading(false);
     };
-    getGuests();
-  }, []);
+    getItems();
+  }, [updateCount]);
 
   const handleGoBack = () => {
     navigate(-1);
@@ -58,7 +59,7 @@ function ViewAllItems() {
       {loading ? (
         <div>Loading</div>
       ) : (
-        <Table tableData={items} deleteItem={deleteItem} />
+        <Table tableData={items} deleteItem={deleteItem} setUpdateCount={setUpdateCount} />
       )}
     </div>
   );

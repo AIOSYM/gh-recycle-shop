@@ -1,6 +1,6 @@
 import TableRow from "./TableRow";
 
-function Table({tableData, deleteItem}) {
+function Table({tableData, deleteItem, setUpdateCount}) {
 
   tableData.sort((a, b) => {
     return b.popularity - a.popularity;
@@ -38,7 +38,7 @@ function Table({tableData, deleteItem}) {
 
           <tbody className="divide-y divide-gray-100">
             {tableData.map((rowData, index) => {
-              return <TableRow key={index} id={index} data={rowData} deleteItem={deleteItem} />;
+              return <TableRow key={index} id={index} data={rowData} deleteItem={deleteItem} setUpdateCount={setUpdateCount}/>;
             })}
           </tbody>
         </table>

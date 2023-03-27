@@ -1,5 +1,6 @@
+import Modal from "./Modal";
 
-function TableRow({ id, data, deleteItem }) {
+function TableRow({ id, data, deleteItem, setUpdateCount }) {
   const itemCollectionName = "2023/items/items";
 
   return (
@@ -26,9 +27,7 @@ function TableRow({ id, data, deleteItem }) {
         </td>
         <td className="px-4 py-2 text-gray-700 whitespace-nowrap">
           <div className="flex gap-2">
-            <button className="text-white bg-blue-500 hover:bg-blue-700 p-2 rounded-sm">
-              Edit
-            </button>
+            <Modal btnName="Edit" id={data.id} setUpdateCount={setUpdateCount} />
             <button
               className="text-white bg-red-500 hover:bg-red-700 p-2 rounded-sm"
               onClick={() => deleteItem(data.id)}
