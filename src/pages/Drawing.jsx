@@ -20,16 +20,16 @@ function Drawing() {
   const [isUploading, setIsUploading] = useState(false);
 
   const location = useLocation();
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const messageState = location.state;
-  const { tableData, allItems, activeUsers} = messageState;
-
+  const { tableData, allItems, activeUsers } = messageState;
   const numAllItems = allItems.length;
 
   useEffect(() => {
     const images = () => {
       const item = allItems.find((item) => item.id === tableData[itemIndex].id);
-      setImages(item.data.imgUrls);
+      console.log(item);
+      setImages(item.data.imageUrls);
     };
     images();
   }, [itemIndex]);

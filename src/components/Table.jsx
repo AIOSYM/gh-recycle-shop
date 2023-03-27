@@ -20,6 +20,9 @@ function Table({tableData, deleteItem, setUpdateCount}) {
                 Item Name
               </th>
               <th className="px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap">
+                Category
+              </th>
+              <th className="px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap">
                 Description
               </th>
               <th className="px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap">

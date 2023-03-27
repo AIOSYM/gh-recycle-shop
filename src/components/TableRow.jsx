@@ -16,6 +16,9 @@ function TableRow({ id, data, deleteItem, setUpdateCount }) {
           </div>
         </td>
         <td className="px-4 py-2 text-gray-700 whitespace-nowrap overflow-hidden max-w-xs text-ellipsis">
+          {data.catRef}
+        </td>
+        <td className="px-4 py-2 text-gray-700 whitespace-nowrap overflow-hidden max-w-xs text-ellipsis">
           {data.description}
         </td>
 
@@ -27,7 +30,11 @@ function TableRow({ id, data, deleteItem, setUpdateCount }) {
         </td>
         <td className="px-4 py-2 text-gray-700 whitespace-nowrap">
           <div className="flex gap-2">
-            <Modal btnName="Edit" id={data.id} setUpdateCount={setUpdateCount} />
+            <Modal
+              btnName="Edit"
+              id={data.id}
+              setUpdateCount={setUpdateCount}
+            />
             <button
               className="text-white bg-red-500 hover:bg-red-700 p-2 rounded-sm"
               onClick={() => deleteItem(data.id)}

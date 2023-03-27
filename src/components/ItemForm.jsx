@@ -22,6 +22,7 @@ import { useCallback } from "react";
 
 function ItemForm({ submitType, id, setShowModal, setUpdateCount }) {
   const [name, setName] = useState("");
+  const [catRef, setCatRef] = useState("other");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
   const [quantity, setQuantity] = useState("");
@@ -119,7 +120,6 @@ function ItemForm({ submitType, id, setShowModal, setUpdateCount }) {
         return;
       }
     }
-
     // // Upload images to storage and get URLs
     let urls = [];
     if (images) {
@@ -134,22 +134,23 @@ function ItemForm({ submitType, id, setShowModal, setUpdateCount }) {
     // Add product data and image URLs to firestore
     const product = {
       name,
+      catRef,
       description,
       price,
       quantity,
       imageUrls: urls,
       createdAt: serverTimestamp(),
     };
-    console.log("product", product);
+
     try {
       await addDoc(collectionRef, product);
     } catch (error) {
-      console.error("Error adding document: ", error);
       toast.error("Error adding item");
     }
 
     // Reset state
     setName("");
+    setCatRef("other");
     setDescription("");
     setPrice(0);
     setQuantity("");
@@ -175,6 +176,7 @@ function ItemForm({ submitType, id, setShowModal, setUpdateCount }) {
 
     let updatedData = {
       name,
+      catRef,
       description,
       price,
       quantity,
@@ -232,6 +234,7 @@ function ItemForm({ submitType, id, setShowModal, setUpdateCount }) {
         if (docSnap.exists()) {
           const data = docSnap.data();
           setName(data.name);
+          setCatRef(data.catRef);
           setDescription(data.description);
           setPrice(data.price);
           setQuantity(data.quantity);
@@ -253,6 +256,15 @@ function ItemForm({ submitType, id, setShowModal, setUpdateCount }) {
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          className="border border-gray-300 rounded-md p-2"
+        />
+      </label>
+      <label className="flex flex-col gap-1">
+        <span className="text-lg font-bold">Category</span>
+        <input
+          type="text"
+          value={catRef}
+          onChange={(e) => setCatRef(e.target.value.toLowerCase().trim())}
           className="border border-gray-300 rounded-md p-2"
         />
       </label>
