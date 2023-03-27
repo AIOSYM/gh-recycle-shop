@@ -14,7 +14,7 @@ function ItemCard({ id, item }) {
   return (
     <div className="card w-96 bg-base-100 shadow-xl duration-300 transform hover:-translate-y-2">
       <figure>
-        <img src={item.imgUrls[0]} alt="item" />
+        <img src={item.imageUrls[0]} alt="item" />
       </figure>
       <div className="card-body justify-between">
         <h2 className="card-title">

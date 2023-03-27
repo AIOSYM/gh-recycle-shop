@@ -14,11 +14,14 @@ function MyAccount() {
   const [allItems, setAllItems] = useState([]);
   const [loadItems, setLoadItems] = useState(true);
 
+  const itemCollectionPath = "2023/items/items";
+  const userCollectionPath = "2023/users/users";
+
   useEffect(() => {
     const fetchItems = async () => {
       //console.log("API CALL:MyAccount");
       try {
-        const querySnap = await getDocs(collection(db, "items"));
+        const querySnap = await getDocs(collection(db, itemCollectionPath));
         const items = [];
         querySnap.forEach((doc) => {
           return items.push({
@@ -40,7 +43,7 @@ function MyAccount() {
       if (user) {
         //console.log("API CALL:MyAccount");
         try {
-          const docRef = doc(db, "users", user.uid);
+          const docRef = doc(db, userCollectionPath, user.uid);
           const docSnap = await getDoc(docRef);
 
           if (docSnap.exists()) {

@@ -25,7 +25,7 @@ function SignUp() {
   const [searchParams, setSearchParams] = useSearchParams();
   const key = searchParams.get("user");
 
-  console.log("key:", key);
+  const userCollectionPath = "2023/users/users";
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -57,7 +57,7 @@ function SignUp() {
       formDataCopy.winningItems = [];
       formDataCopy.wantedItems = [];
 
-      await setDoc(doc(db, "users", user.uid), formDataCopy);
+      await setDoc(doc(db, userCollectionPath, user.uid), formDataCopy);
 
       navigate("/");
     } catch (error) {

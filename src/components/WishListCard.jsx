@@ -2,7 +2,7 @@ function WishListCard({ item, isGrantor }) {
   return (
     <div className="card w-96 bg-base-100 shadow-xl image-full">
       <figure>
-        <img src={item.imgUrls[0]} alt="Item" />
+        <img src={item.imageUrls[0]} alt="Item" />
       </figure>
       <div className="card-body">
         <h2 className="card-title">

@@ -8,6 +8,7 @@ import GoogleIcon from "../assets/svg/googleIcon.svg";
 function OAuth() {
   const navigate = useNavigate();
   const location = useLocation();
+  const userCollectionPath = "2023/users/users";
 
   const onGoogleClick = async () => {
     try {
@@ -17,12 +18,12 @@ function OAuth() {
       const user = result.user;
 
       // Check for user
-      const docRef = doc(db, "users", user.uid);
+      const docRef = doc(db, userCollectionPath, user.uid);
       const docSnap = await getDoc(docRef);
 
       // If user, doesn't exist, create user
       if (!docSnap.exists()) {
-        await setDoc(doc(db, "users", user.uid), {
+        await setDoc(doc(db, userCollectionPath, user.uid), {
           name: user.displayName,
           email: user.email,
           timestamp: serverTimestamp(),

@@ -24,6 +24,9 @@ export const ItemProvider = ({ children }) => {
   const [sendLoading, setSendLoading] = useState(true);
   const [userLoading, setUserLoading] = useState(true);
 
+  const itemCollectionPath = "2023/items/items";
+  const userCollectionPath = "2023/users/users";
+
   useEffect(() => {
     fetchItems();
   }, []);
@@ -36,7 +39,7 @@ export const ItemProvider = ({ children }) => {
   const fetchItems = async () => {
     //console.log("API CALL:ItemContext");
     try {
-      const itemsRef = collection(db, "items");
+      const itemsRef = collection(db, itemCollectionPath);
       const q = query(itemsRef, orderBy("name", "asc"));
 
       // Execute query
@@ -64,7 +67,9 @@ export const ItemProvider = ({ children }) => {
     const auth = getAuth();
     setUser(auth.currentUser);
 
-    const docRef = doc(db, "users", auth.currentUser.uid);
+    console.log(auth);
+
+    const docRef = doc(db, userCollectionPath, auth.currentUser.uid);
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
@@ -105,7 +110,7 @@ export const ItemProvider = ({ children }) => {
       );
     }
     //console.log("API CALL:ItemContext(write)");
-    const docRef = doc(db, "users", user.uid);
+    const docRef = doc(db, userCollectionPath, user.uid);
     await updateDoc(docRef, userDataCopy);
     setUserData(userDataCopy);
 
