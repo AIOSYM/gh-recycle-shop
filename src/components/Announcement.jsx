@@ -11,10 +11,10 @@ function Announcement() {
       <div className="border flex flex-col p-4">
         <div className="flex flex-col self-center">
           <p className="inline-block px-3 mb-4 text-xs md:text-md font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
-            The drawing session will start from 14:00 (4/1)
+            The drawing session will start from 15:00 (4/2)
           </p>
           <p className="self-center inline-block px-3  mb-4 text-xs md:text-md font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
-            抽選会が14:00時から始まる。
+            抽選会が15:00時から始まる。
           </p>
         </div>
         <div className="self-center">
@@ -31,13 +31,13 @@ function Announcement() {
           <div className="text-xs">
             If you encounter any problem, please contact:{" "}
             <span className="text-xs underline text-primary">
-              pich.david.es@tut.jp
+              rexy.alvian.nerchan.ib@tut.jp
             </span>
           </div>
           <div className="text-xs">
             お問い合わせ先：{" "}
             <span className="text-xs underline text-primary">
-              pich.david.es@tut.jp
+              rexy.alvian.nerchan.ib@tut.jp
             </span>
           </div>
         </div>
