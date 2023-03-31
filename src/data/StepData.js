@@ -18,7 +18,7 @@ const StepData = [
     title: "Join the drawing",
     titleJP: "抽選の参加",
     description:
-      "The items of your choice will be decided by drawing. (Online: by Zoom)",
+      "The items of your choice will be decided by drawing. (Online: by Google Meet)",
   },
   {
     id: 4,

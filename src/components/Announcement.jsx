@@ -19,12 +19,12 @@ function Announcement() {
         </div>
         <div className="self-center">
           <a
-            href="https://zoom.us/j/96849972505?pwd=a0c2ZzRES21nMUVvZERlWUJyRjdnZz09"
+            href="https://meet.google.com/edd-gwsy-ztg"
             className="btn btn-primary text-white"
           >
-            Join zoom call now
+            Join Google Meet now
             <br />
-            Zoomに参加する
+            Google Meetに参加する
           </a>
         </div>
         <div className="p-4">

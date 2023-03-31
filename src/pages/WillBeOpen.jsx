@@ -38,10 +38,10 @@ function WillBeOpen() {
                 <li>
                   15:00-15:30 Online drawing session (
                   <a
-                    href="https://zoom.us/j/96849972505?pwd=a0c2ZzRES21nMUVvZERlWUJyRjdnZz09"
+                    href="https://meet.google.com/edd-gwsy-ztg"
                     className="text-primary underline"
                   >
-                    Join here - Zoom Link
+                    Join here - Google Meet Link
                   </a>
                   )
                 </li>

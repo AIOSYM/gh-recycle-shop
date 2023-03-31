@@ -26,7 +26,7 @@ function Banner({ user }) {
           </h1>
 
           <p className="max-w-lg mt-4 sm:leading-relaxed sm:text-xl">
-            2022年度グローバルハウスのリサイクルイベント
+            2023年度グローバルハウスのリサイクルイベント
           </p>
         </div>
       </div>
