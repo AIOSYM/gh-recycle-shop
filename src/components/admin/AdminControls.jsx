@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-export const AdminControls = () => {
+export const AdminControls = ({ allUsers }) => {
   const navigate = useNavigate();
 
   const handleViewAllItems = () => {
@@ -9,6 +9,17 @@ export const AdminControls = () => {
 
   const handleAddNewItem = () => {
     navigate("/add-new-item");
+  };
+
+  const downloadEmailList = () => {
+    const emailList = allUsers.map((user) => user.data.email);
+    const csvContent = "data:text/csv;charset=utf-8," + emailList.join(",");
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "emailList.csv");
+    document.body.appendChild(link);
+    link.click();
   };
 
   return (
@@ -23,6 +34,11 @@ export const AdminControls = () => {
         <div className="text-center">
           <button className="btn btn-primary" onClick={handleAddNewItem}>
             Add new item
+          </button>
+        </div>
+        <div className="text-center">
+          <button className="btn btn-primary" onClick={downloadEmailList}>
+            Download Email list
           </button>
         </div>
       </div>

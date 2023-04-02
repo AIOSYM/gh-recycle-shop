@@ -64,6 +64,7 @@ export const ItemProvider = ({ children }) => {
   // fetching a user from firestore
   const fetchUserData = async () => {
     //console.log("API CALL:ItemContext");
+
     const auth = getAuth();
     setUser(auth.currentUser);
 

@@ -112,7 +112,7 @@ function Dashboard() {
         numItems={allItems.length}
         numWishList={tableData}
       />
-      <AdminControls />
+      <AdminControls allUsers={allUsers}/>
       <ItemsTable
         tableData={tableData}
         allItems={allItems}
