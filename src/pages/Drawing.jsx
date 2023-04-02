@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import { confirm } from "react-confirm-box";
 import { useEffect, useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -131,7 +130,7 @@ function Drawing() {
   };
 
   const handleClick = async () => {
-    const result = await confirm("Are you sure?");
+    const result = window.confirm("Are you sure to go back to Dashboard?");
     if (result) {
       navigate(-1);
       return;
@@ -154,7 +153,7 @@ function Drawing() {
   // clear the winningItems for all user
   const clearAllUserWinningItems = async () => {
     const allUsers = await getAllUsers();
-    
+
     allUsers.forEach(async (user) => {
       const userId = user.id;
 
@@ -257,16 +256,13 @@ function Drawing() {
 
         <div className="flex flex-row justify-center p-4">
           {itemIndex !== 0 && (
-            <button
-              className="btn btn-circle btn-accent mx-2"
-              onClick={handleBack}
-            >
-              Back
+            <button className="btn btn-accent mx-2" onClick={handleBack}>
+              {`< Back`}
             </button>
           )}
           {itemIndex < numAllItems - 1 && (
-            <button className="btn btn-circle btn-accent" onClick={handleNext}>
-              Next
+            <button className="btn btn-accent" onClick={handleNext}>
+              {`Next >`}
             </button>
           )}
         </div>
@@ -294,7 +290,7 @@ function Drawing() {
         </button>
       )}
       <button className="btn btn-warning mt-6" onClick={handleClick}>
-        Go back
+        Back to Dashboard
       </button>
     </div>
   );
