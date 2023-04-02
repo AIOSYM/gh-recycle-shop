@@ -19,7 +19,7 @@ function Announcement() {
         </div>
         <div className="self-center">
           <a
-            href="https://meet.google.com/edd-gwsy-ztg"
+            href="https://meet.google.com/dxy-ewyo-ofc"
             className="btn btn-primary text-white"
           >
             Join Google Meet now

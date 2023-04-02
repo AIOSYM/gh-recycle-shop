@@ -38,7 +38,7 @@ function WillBeOpen() {
                 <li>
                   15:00-15:30 Online drawing session (
                   <a
-                    href="https://meet.google.com/edd-gwsy-ztg"
+                    href="https://meet.google.com/dxy-ewyo-ofc"
                     className="text-primary underline"
                   >
                     Join here - Google Meet Link
