@@ -5,6 +5,7 @@ import Banner from "../components/Banner";
 import Step from "../components/Step";
 import ItemList from "../components/ItemList";
 import Announcement from "../components/Announcement";
+import Footer from "../components/Footer";
 function Home() {
   const { loggedIn, checkingStatus, user } = useAuthStatus();
 
@@ -17,6 +18,7 @@ function Home() {
           <Step />
           <Announcement />
           <ItemList />
+          <Footer />
         </div>
       </ItemProvider>
     )
