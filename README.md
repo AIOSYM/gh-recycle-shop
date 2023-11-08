@@ -1,70 +1,39 @@
-# Getting Started with Create React App
+# GH Recycle Shop
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
+GH Recycle Shop is an open-source platform designed for recycling event organizers. It enables them to create and host events, manage item listings, and conduct lotteries to determine who wins the items. The platform aims to streamline the recycling event management process and make it more engaging for participants.
 
-## Available Scripts
+**Note:** This project was originally developed as a specialized tool for my university's student house, known as Global House (GH), to aid in hosting recycling events. It's crafted with the vision to encourage sustainability and community engagement within the student body.
 
-In the project directory, you can run:
+## Features
+- 📅 **Event Creation:** Organizers can easily set up recycling events within the platform.
+- 🛍️ **Item Listing:** Users can browse through the items available for recycling and select the ones they are interested in.
+- 🎟️ **Lottery System:** Organizers can conduct a lottery to fairly decide the winners of the items.
+- 📊 **User Dashboard:** A personalized dashboard for users to track their participation and items of interest.
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Getting Started
+## Tech Stack
+The GH Recycle Shop is built with the following technologies:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **React**: A JavaScript library for building user interfaces, empowering our client-side application.
+- **DaisyUI**: A React-compatible UI library based on Tailwind CSS that provides ready-to-use components for rapid UI development.
+- **Firebase**: A comprehensive app development platform by Google that provides backend services such as authentication, real-time database, and hosting.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Installation
+1. Clone the repository:
+```bash
+git clone https://github.com/AIOSYM/gh-recycle-shop
+```
 
-### `npm run build`
+2. Clone the repository:
+```bash
+cd gh-recycle-shop
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. Install dependencies:
+```bash
+npm install
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
