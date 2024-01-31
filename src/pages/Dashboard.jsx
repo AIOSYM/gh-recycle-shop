@@ -14,7 +14,7 @@ function Dashboard() {
   const [tableData, setTableData] = useState([]);
   const [activeUsers, setActiveUsers] = useState(null);
 
-  const collectionPath = "2023";
+  const collectionPath = "2024";
   const navigate = useNavigate();
 
   useEffect(() => {

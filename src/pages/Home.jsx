@@ -11,7 +11,7 @@ function Home() {
 
   return (
     user && (
-      <ItemProvider>
+      <ItemProvider event="2024">
         <div className="flex flex-col justify-start h-screen">
           <NavBar />
           <Banner user={user} />

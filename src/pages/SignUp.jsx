@@ -25,7 +25,7 @@ function SignUp() {
   const [searchParams, setSearchParams] = useSearchParams();
   const key = searchParams.get("user");
 
-  const userCollectionPath = "2023/users/users";
+  const userCollectionPath = "2024/users/users";
 
   const onChange = (e) => {
     setFormData((prevState) => ({

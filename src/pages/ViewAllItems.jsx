@@ -12,7 +12,7 @@ function ViewAllItems() {
   const [updateCount, setUpdateCount] = useState(0);
 
   const navigate = useNavigate();
-  const collectionPath = "2023/items/items";
+  const collectionPath = "2024/items/items";
 
   const deleteItem = async (id) => {
     const isConfirm = window.confirm("Are you sure you want to delete this?");

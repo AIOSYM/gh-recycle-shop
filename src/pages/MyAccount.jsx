@@ -14,8 +14,8 @@ function MyAccount() {
   const [allItems, setAllItems] = useState([]);
   const [loadItems, setLoadItems] = useState(true);
 
-  const itemCollectionPath = "2023/items/items";
-  const userCollectionPath = "2023/users/users";
+  const itemCollectionPath = "2024/items/items";
+  const userCollectionPath = "2024/users/users";
 
   useEffect(() => {
     const fetchItems = async () => {

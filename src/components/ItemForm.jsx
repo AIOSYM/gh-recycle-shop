@@ -30,7 +30,7 @@ function ItemForm({ submitType, id, setShowModal, setUpdateCount }) {
   const [photoPreview, setPhotoPreview] = useState([]);
   const [imageUrls, setImageUrls] = useState([]);
 
-  const collectionPath = "2023/items/items";
+  const collectionPath = "2024/items/items";
   const collectionRef = collection(db, collectionPath);
 
   const MAX_WIDTH = 1080;
@@ -100,7 +100,6 @@ function ItemForm({ submitType, id, setShowModal, setUpdateCount }) {
           const newStorageRef = ref(storage, fileName);
 
           const snapshot = await uploadBytes(newStorageRef, file.data);
-        
 
           const url = await getDownloadURL(newStorageRef);
           urls.push(url);
@@ -129,6 +128,11 @@ function ItemForm({ submitType, id, setShowModal, setUpdateCount }) {
       } catch (error) {
         console.error("Failed to upload file. Error: ", error);
       }
+    }
+    if (urls.length === 0) {
+      urls = [
+        "https://plus.unsplash.com/premium_photo-1679341705517-67f35920eec5?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      ];
     }
 
     // Add product data and image URLs to firestore

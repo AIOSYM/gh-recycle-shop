@@ -31,8 +31,8 @@ function Drawing() {
   const { tableData, allItems, activeUsers } = messageState;
   const numAllItems = allItems.length;
 
-  const userCollectionPath = "2023/users/users";
-  const resultCollectionPath = "2023/results/results";
+  const userCollectionPath = "2024/users/users";
+  const resultCollectionPath = "2024/results/results";
 
   useEffect(() => {
     const images = () => {

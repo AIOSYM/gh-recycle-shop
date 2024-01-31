@@ -1,7 +1,7 @@
 import Modal from "./Modal";
 
 function TableRow({ id, data, deleteItem, setUpdateCount }) {
-  const itemCollectionName = "2023/items/items";
+  const itemCollectionName = "2024/items/items";
 
   return (
     <>

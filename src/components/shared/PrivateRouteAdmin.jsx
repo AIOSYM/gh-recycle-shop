@@ -13,7 +13,7 @@ const PrivateRouteAdmin = () => {
     const getAdminEmails = async () => {
       try {
         const querySnapshot = await getDocs(
-          collection(db, "2023/admins/admins")
+          collection(db, "2024/admins/admins")
         );
         const adminEmails = [];
         querySnapshot.forEach((doc) => {
