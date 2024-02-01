@@ -25,7 +25,7 @@ export const ItemProvider = ({ children, event }) => {
   const [userLoading, setUserLoading] = useState(true);
 
   const itemCollectionPath = `${event}/items/items`;
-  const userCollectionPath = `2023/users/users`;
+  const userCollectionPath = `2024/users/users`;
 
   useEffect(() => {
     fetchItems();
