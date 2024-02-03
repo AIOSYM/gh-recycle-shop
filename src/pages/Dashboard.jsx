@@ -102,17 +102,20 @@ function Dashboard() {
   return (
     <div className="p-4">
       <div>
-        <button className="underline" onClick={() => navigate("/")}>
-          Go to Home
+        <button className="btn" onClick={() => navigate("/")}>
+          View Recycle Shop Page
         </button>
-        <h1 className="text-3xl font-extrabold sm:text-5xl">Dashboard</h1>
+        <h1 className="text-3xl font-extrabold sm:text-5xl mt-5">Dashboard</h1>
       </div>
-      <Statistic
-        numUsers={activeUsers.length}
-        numItems={allItems.length}
-        numWishList={tableData}
-      />
-      <AdminControls allUsers={allUsers}/>
+      <div className="max-w-lg mx-auto">
+        <Statistic
+          numUsers={activeUsers.length}
+          numItems={allItems.length}
+          numWishList={tableData}
+        />
+        <AdminControls allUsers={allUsers} />
+      </div>
+
       <ItemsTable
         tableData={tableData}
         allItems={allItems}
