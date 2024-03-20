@@ -12,8 +12,8 @@ function ItemCard({ id, item }) {
   }, []);
 
   return (
-    <div className="card w-96 bg-base-100 shadow-xl duration-300 transform hover:-translate-y-2">
-      <figure>
+    <div className="card bg-base-100 shadow-xl duration-300 transform hover:-translate-y-2 border">
+      <figure className="h-60 object-center object-cover">
         <img src={item.imageUrls[0]} alt="item" />
       </figure>
       <div className="card-body justify-between">
@@ -35,7 +35,7 @@ function ItemCard({ id, item }) {
         <div className="card-actions justify-end ">
           <button
             className={`btn ${
-              isSelected ? "btn btn-error" : "btn-secondary"
+              isSelected ? "btn-error" : "btn-secondary"
             } text-xs btn-sm md:text-md md:btn-md`}
             onClick={() => {
               setIsSelected(!isSelected);
