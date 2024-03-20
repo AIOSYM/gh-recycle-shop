@@ -6,6 +6,8 @@ import Step from "../components/Step";
 import ItemList from "../components/ItemList";
 import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
+import ScrollToAnchor from "../components/ScrollLink";
+
 function Home() {
   const { loggedIn, checkingStatus, user } = useAuthStatus();
 
@@ -13,6 +15,7 @@ function Home() {
     user && (
       <ItemProvider event="2024">
         <div className="flex flex-col justify-start h-screen">
+          <ScrollToAnchor />
           <NavBar />
           <Banner user={user} />
           <Step />
