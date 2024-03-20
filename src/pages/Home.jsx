@@ -15,7 +15,6 @@ function Home() {
     user && (
       <ItemProvider event="2024">
         <div className="flex flex-col justify-start h-screen">
-          <ScrollToAnchor />
           <NavBar />
           <Banner user={user} />
           <Step />
