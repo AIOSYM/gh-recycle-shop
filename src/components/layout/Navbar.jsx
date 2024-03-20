@@ -26,7 +26,7 @@ function Navbar() {
         </Link>
       </div>
       <div className="flex-none">
-        <ul className="menu menu-horizontal p-0 text-xs sm:text-sm md:text-lg">
+        <ul className="menu menu-horizontal p-0 text-xs sm:text-sm md:text-lg font-bold">
           <li>
             <p onClick={goToAccount}>My List</p>
           </li>
