@@ -108,26 +108,29 @@ function Dashboard() {
 
   return (
     <div className="p-4">
-      <div>
-        <button className="btn" onClick={() => navigate("/")}>
-          View Recycle Shop Page
-        </button>
-        <h1 className="text-3xl font-extrabold sm:text-5xl mt-5">Dashboard</h1>
-      </div>
-      <div className="max-w-3xl mx-auto">
-        <Statistic
-          numUsers={activeUsers.length}
-          numItems={allItems.length}
-          numWishList={tableData}
-        />
-        <AdminControls allUsers={allUsers} />
+      <button className="btn" onClick={() => navigate("/")}>
+        View Recycle Shop Page
+      </button>
+
+      <h1 className="text-3xl font-extrabold sm:text-5xl mt-5 text-center">
+        Dashboard
+      </h1>
+      <div className="border rounded-md my-4 p-4">
+        <div className="flex flex-col max-w-3xl mx-auto">
+          <Statistic
+            numUsers={activeUsers.length}
+            numItems={allItems.length}
+            numWishList={tableData}
+          />
+          <AdminControls allUsers={allUsers} />
+        </div>
       </div>
 
       <ItemsTable
         tableData={tableData}
         allItems={allItems}
         activeUsers={activeUsers}
-        userCollectionPath={userCollectionPath}
+        eventID={eventID}
       />
     </div>
   );

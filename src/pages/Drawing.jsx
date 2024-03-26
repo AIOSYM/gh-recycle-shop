@@ -5,14 +5,10 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { X } from "lucide-react";
 
-import {
-  doc,
-  collection,
-  serverTimestamp,
-  setDoc,
-} from "firebase/firestore";
+import { doc, collection, serverTimestamp, setDoc } from "firebase/firestore";
 import { db } from "../firebase.config";
 import { toast } from "react-toastify";
+import { setDrawingStatus } from "../libs/firebase";
 
 function Drawing() {
   const [itemIndex, setItemIndex] = useState(0);
@@ -24,12 +20,14 @@ function Drawing() {
   const [currentCatRef, setCurrentCatRef] = useState({});
   const [drawingResults, setDrawingResult] = useState({});
   const [isUploading, setIsUploading] = useState(false);
+  const [showSaveButton, setShowSaveButton] = useState(false);
 
   const location = useLocation();
   const navigate = useNavigate();
   const messageState = location.state;
   const { tableData, allItems, activeUsers } = messageState;
   const numAllItems = allItems.length;
+  const remainingItems = numAllItems - Object.keys(drawingResults).length;
   const eventID = process.env.REACT_APP_EVENT_ID;
 
   const userCollectionPath = `${eventID}/users/users`;
@@ -121,18 +119,22 @@ function Drawing() {
     };
 
     if (currentList.length === 0) {
-      toast.info("No more winner");
+      toast.info("No winner");
     }
 
     setDrawingResult(drawingResult);
     setReceivedParticipants(receivedList);
     setCurrentParticipants(currentList);
     setCurrentCatRef(newCurrentCatRef);
+
+    if (itemId === tableData.length - 1) {
+      setShowSaveButton(true);
+    }
   };
 
   const handleCancelDrawing = async () => {
     const result = window.confirm(
-      "Your result will not be saved. \nAre you sure you want to cancel?"
+      "Caution: your result will not be saved. \nAre you sure you want to cancel?"
     );
     if (result) {
       navigate(-1);
@@ -147,7 +149,6 @@ function Drawing() {
       return drawingResults[key];
     });
     allParticipantCopy.forEach(async (user) => {
-      //console.log("updatedData");
       const name = user.data.name;
       const userId = user.id;
       const winningItemsFromDraw = drawResultArr.filter((item) =>
@@ -156,9 +157,9 @@ function Drawing() {
       const winningItemsId = winningItemsFromDraw.map((item) => item.id);
 
       let updatedData = { ...user.data, winningItems: winningItemsId };
-      //console.log(name, winningItemsFromDraw);
       try {
         await setDoc(doc(db, userCollectionPath, userId), updatedData);
+        await setDrawingStatus(eventID, "done");
         toast.success("Notify the winning item to user successfully");
       } catch (error) {
         toast.error(error);
@@ -167,17 +168,18 @@ function Drawing() {
   };
 
   const uploadToDatabase = async () => {
+    if (remainingItems !== 0) {
+      alert("There are still undrawn items\nGo back and draw all items first");
+      return;
+    }
     try {
       setIsUploading(true);
       const drawingResultsCopy = {
         data: { ...drawingResults },
         timestamp: serverTimestamp(),
       };
-      console.log(drawingResultsCopy);
       const newTableDataRef = doc(collection(db, resultCollectionPath));
       await setDoc(newTableDataRef, drawingResultsCopy);
-      console.log(drawingResultsCopy);
-      toast.success("Upload was successful");
       setIsUploading(false);
     } catch (error) {
       toast.error(error);
@@ -204,73 +206,135 @@ function Drawing() {
   };
 
   return (
-    <div className="flex flex-col p-6">
-      <h1 className="text-3xl">
+    <div className="flex flex-col h-screen w-screen px-8 overflow-hidden items-center">
+      <h1 className="text-5xl my-4 font-bold text-center">
         Drawing{` (${itemIndex + 1}/${tableData.length})`}
       </h1>
-      <div className="flex flex-col">
-        <h1>{tableData[itemIndex].name}</h1>
-        <h1>Quantity: {tableData[itemIndex].quantity}</h1>
-        <h1>
-          Wish List{`(${tableData[itemIndex].wantedBy.length})`}:{" "}
-          {tableData[itemIndex].wantedBy.join(", ")}
-        </h1>
-        <h1>
-          Draw result:{" "}
-          {drawingResults[itemIndex] &&
-            drawingResults[itemIndex].results.join(", ")}
-        </h1>
-        <button
-          className="btn btn-info w-1/4 self-center my-4"
-          onClick={() => performDrawingForItem(itemIndex)}
-        >
-          Start drawing
-        </button>
 
-        <div className="flex flex-row justify-center p-4">
-          {itemIndex !== 0 && (
-            <button className="btn btn-accent mx-2" onClick={handleBack}>
-              {`< Back`}
+      <div className="flex justify-between border-4 w-full p-4 mb-4">
+        <div className="flex flex-col gap-2 w-1/3">
+          {showSaveButton && itemIndex === numAllItems - 1 ? (
+            <button
+              className="btn btn-success w-full text-white"
+              onClick={uploadToDatabase}
+              disabled={isUploading}
+            >
+              Save result{" "}
+              {remainingItems !== 0 && `(${remainingItems} undrawn items left)`}
+            </button>
+          ) : (
+            <button
+              disabled={drawingResults[itemIndex]}
+              className="btn w-full bg-primary"
+              onClick={() => performDrawingForItem(itemIndex)}
+            >
+              Draw this item
             </button>
           )}
-          {itemIndex < numAllItems - 1 && (
-            <button className="btn btn-accent" onClick={handleNext}>
-              {`Next >`}
+
+          <div className="flex gap-2">
+            <button
+              disabled={itemIndex === 0}
+              className={`btn flex-1`}
+              onClick={handleBack}
+            >
+              {`< Back`}
             </button>
+
+            <div className="flex-1">
+              <button
+                disabled={itemIndex === numAllItems - 1}
+                className={`btn w-full`}
+                onClick={handleNext}
+              >
+                {`Next >`}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <button
+            className="btn bg-red-600 text-white mt-6 hover:bg-red-700"
+            onClick={handleCancelDrawing}
+          >
+            <span className="flex items-center">
+              <X className="w-6 h-6" />
+              Cancel Drawing
+            </span>
+          </button>
+        </div>
+      </div>
+
+      <div className="flex overflow-y-scroll border-4 w-full my-4 p-4 gap-4">
+        {/* left panel */}
+        <div className="flex flex-col flex-1 px-4 border-r-4">
+          {drawingResults[itemIndex] &&
+          drawingResults[itemIndex].results.length !== 0 ? (
+            <div className="flex flex-col justify-center items-center w-full h-full">
+              <p className="font-bold text-center text-3xl">
+                Item: {tableData[itemIndex].name}
+              </p>
+              <p className="font-bold text-2xl p-4">Congratulation!! 🎉🥳</p>
+              <div className="flex flex-col">
+                {drawingResults[itemIndex].results.map((user, index) => {
+                  return (
+                    <p key={index} className="badge p-2">
+                      {`${user}`}
+                    </p>
+                  );
+                })}
+              </div>
+            </div>
+          ) : drawingResults[itemIndex] &&
+            drawingResults[itemIndex].results.length === 0 ? (
+            <div>
+              <p className="font-bold">Item: {tableData[itemIndex].name}</p>
+              <p>Quantity: {tableData[itemIndex].quantity}</p>
+              <p>
+                Description:{" "}
+                {tableData[itemIndex].description || "No Description"}
+              </p>
+              <p>Wish List{`(${tableData[itemIndex].wantedBy.length})`}</p>
+              <div className="flex flex-col gap-2 p-8">
+                <p className="text-center font-bold">No winner! 🥺</p>
+              </div>
+            </div>
+          ) : (
+            <div>
+              <p className="font-bold">Item: {tableData[itemIndex].name}</p>
+              <p>Quantity: {tableData[itemIndex].quantity}</p>
+              <p>
+                Description:{" "}
+                {tableData[itemIndex].description || "No Description"}
+              </p>
+              <p>Wish List{`(${tableData[itemIndex].wantedBy.length})`}</p>
+              <div className="flex flex-col gap-2 p-8">
+                {tableData[itemIndex].wantedBy.map((user, index) => {
+                  return (
+                    <p key={index} className="badge">
+                      {`${index + 1}. ${user}`}
+                    </p>
+                  );
+                })}
+              </div>
+            </div>
           )}
         </div>
 
-        <div className="carousel-wrapper w-1/2 self-center">
-          <Carousel>
+        {/* right panel */}
+        <div className="carousel-wrapper flex-1">
+          <Carousel thumbWidth={48} className="bg-primary/20">
             {images.map((img, index) => {
               return (
-                <div key={index}>
-                  <img src={img} />
+                <div key={index} className="w-1/2 mx-auto">
+                  <img src={img} className="object-contain" />
                 </div>
               );
             })}
           </Carousel>
         </div>
       </div>
-
-      {itemIndex === numAllItems - 1 && (
-        <button
-          className="btn btn-success mt-6"
-          onClick={uploadToDatabase}
-          disabled={isUploading}
-        >
-          Save result
-        </button>
-      )}
-      <button
-        className="btn bg-red-600 text-white mt-6 hover:bg-red-700"
-        onClick={handleCancelDrawing}
-      >
-        <span className="flex items-center">
-          <X className="w-6 h-6" />
-          Cancel Drawing
-        </span>
-      </button>
     </div>
   );
 }

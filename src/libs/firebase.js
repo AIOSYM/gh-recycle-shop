@@ -1,5 +1,22 @@
 import { db } from "../firebase.config";
-import { getDocs, setDoc, doc, collection } from "firebase/firestore";
+import { getDocs, getDoc, setDoc, doc, collection } from "firebase/firestore";
+
+export const getDrawingStatus = async (eventID) => {
+  const docPath = `${eventID}/status`;
+  const docRef = doc(db, docPath);
+  const docSnap = await getDoc(docRef);
+  if (docSnap.exists()) {
+    return docSnap.data().drawing;
+  } else {
+    return {};
+  }
+};
+
+export const setDrawingStatus = async (eventID, status) => {
+  const docPath = `${eventID}/status`;
+  const docRef = doc(db, docPath);
+  await setDoc(docRef, { drawing: status });
+}
 
 export const getAllUsers = async (userCollectionPath) => {
   const docsRef = collection(db, userCollectionPath);

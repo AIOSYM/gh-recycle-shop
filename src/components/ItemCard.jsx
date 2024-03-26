@@ -13,7 +13,7 @@ function ItemCard({ id, item }) {
 
   return (
     <div
-      className="card bg-base-100 shadow-xl duration-300 transform hover:-translate-y-2 border"
+      className="card bg-base-100 shadow-xl duration-300 transform hover:-translate-y-2 border break-all"
       id={id}
     >
       <figure className="h-60 object-center object-cover">
