@@ -112,7 +112,7 @@ function Dashboard() {
         </button>
         <h1 className="text-3xl font-extrabold sm:text-5xl mt-5">Dashboard</h1>
       </div>
-      <div className="max-w-lg mx-auto">
+      <div className="max-w-3xl mx-auto">
         <Statistic
           numUsers={activeUsers.length}
           numItems={allItems.length}

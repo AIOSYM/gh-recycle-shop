@@ -33,7 +33,7 @@ export const AdminControls = ({ allUsers }) => {
   return (
     <div className="px-4 py-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 text-neutral">
       <h1 className="text-2xl mb-4 self-start">Control</h1>
-      <div className="grid row-gap-8 gap-2 sm:grid-cols-3">
+      <div className="grid row-gap-8 gap-2 sm:grid-cols-4">
         <div className="text-center">
           <button className="btn btn-primary" onClick={handleViewAllItems}>
             View all items

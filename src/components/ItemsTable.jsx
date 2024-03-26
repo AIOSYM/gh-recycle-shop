@@ -23,8 +23,13 @@ function ItemsTable({ tableData, allItems, activeUsers }) {
   };
 
   return (
-    <div className="flex flex-col w-full">
-      <h3 className="text-3xl font-bold sm:text-4xl pb-4">Items List</h3>
+    <div className="flex flex-col w-full border px-8 pb-8">
+      <div className="flex flex-col items-center m-8">
+        <h3 className="text-3xl font-bold sm:text-4xl pb-4">Items List</h3>
+        <button className="btn btn-primary" onClick={startDrawing}>
+          Start Drawing
+        </button>
+      </div>
       <div className="overflow-hidden overflow-x-auto border border-gray-100 rounded">
         <table className="min-w-full text-sm divide-y divide-gray-200">
           <thead>
@@ -56,11 +61,6 @@ function ItemsTable({ tableData, allItems, activeUsers }) {
             })}
           </tbody>
         </table>
-      </div>
-      <div className="self-center p-4">
-        <button className="btn btn-primary" onClick={startDrawing}>
-          Start Drawing
-        </button>
       </div>
     </div>
   );
