@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { Statistic } from "../components/Statistic";
 import ItemsTable from "../components/ItemsTable";
 import { AdminControls } from "../components/admin/AdminControls";
+import Loading from "../components/shared/Loading";
 
 function Dashboard() {
   const [allUsers, setAllUsers] = useState(null);
@@ -96,7 +97,11 @@ function Dashboard() {
   }, [allUsers, allItems]);
 
   if (loading) {
-    return <h1>User loading...</h1>;
+    return (
+      <div className="flex h-screen w-screen">
+        <Loading />
+      </div>
+    );
   }
 
   return (
