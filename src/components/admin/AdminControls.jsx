@@ -1,6 +1,10 @@
 import { useNavigate } from "react-router-dom";
 
 export const AdminControls = ({ allUsers }) => {
+  const participatedUsers = allUsers.filter(
+    (user) => user.data.wantedItems.length !== 0
+  );
+
   const navigate = useNavigate();
 
   const handleViewAllItems = () => {
@@ -16,7 +20,7 @@ export const AdminControls = ({ allUsers }) => {
   };
 
   const downloadEmailList = () => {
-    const emailList = allUsers.map((user) => user.data.email);
+    const emailList = participatedUsers.map((user) => user.data.email);
     const csvContent = "data:text/csv;charset=utf-8," + emailList.join(",");
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
