@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { doc, getDoc, getDocs, collection } from "firebase/firestore";
 import { db } from "../firebase.config";
 import { useAuthStatus } from "../hooks/useAuthStatus";
+import { getDrawingStatus } from "../libs/firebase";
 
 import WishListGrid from "../components/WishListGrid";
 
@@ -14,6 +15,7 @@ function MyAccount() {
   const [userData, setUserData] = useState(null);
   const [allItems, setAllItems] = useState([]);
   const [loadItems, setLoadItems] = useState(true);
+  const [status, setStatus] = useState("");
 
   const itemCollectionPath = `${eventID}/items/items`;
   const userCollectionPath = `${eventID}/users/users`;
@@ -60,6 +62,15 @@ function MyAccount() {
     fetchSingleUser();
   }, [user]);
 
+  useEffect(() => {
+    const getStatus = async () => {
+      const status = await getDrawingStatus(eventID);
+      setStatus(status);
+    };
+
+    getStatus();
+  }, []);
+
   let wishListItems = [];
   let winningItemsId = [];
   if (loadItems || !userData) {
@@ -78,9 +89,9 @@ function MyAccount() {
       <Navbar />
       <main className="h-full pb-16 overflow-y-auto">
         <div className="container px-6 mx-auto grid">
-          <h1 className="my-6 text-3xl font-semibold">My Account</h1>
+          <h1 className="my-6 text-3xl font-semibold">My Account </h1>
 
-          <div className="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-white bg-purple-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple">
+          <div className="flex items-center justify-between p-4 mb-4 text-sm font-semibold text-white bg-purple-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple">
             <div className="flex items-center">
               <svg
                 className="w-5 h-5 mr-2"
@@ -89,11 +100,21 @@ function MyAccount() {
               >
                 <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
               </svg>
-              <span>My Wish List</span>
+              <span>My Wish List </span>
             </div>
           </div>
 
-          <WishListGrid items={wishListItems} winningItemsId={winningItemsId} />
+          <p className="font-bold my-2">
+            {status === "pending"
+              ? "NOTE: We will let you know the result on this page! Please make sure you check this page again later."
+              : "Result is out!"}
+          </p>
+
+          <WishListGrid
+            items={wishListItems}
+            winningItemsId={winningItemsId}
+            status={status}
+          />
         </div>
       </main>
     </div>

@@ -20,7 +20,7 @@ function ItemCard({ id, item }) {
         <img src={item.imageUrls[0]} alt="item" />
       </figure>
       <div className="card-body justify-between">
-        <h2 className="card-title">
+        <h2 className="card-title font-bold">
           {item.name}
           <div className="badge badge-secondary">{item.price}円</div>
         </h2>

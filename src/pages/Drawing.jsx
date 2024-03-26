@@ -161,6 +161,7 @@ function Drawing() {
         await setDoc(doc(db, userCollectionPath, userId), updatedData);
         await setDrawingStatus(eventID, "done");
         toast.success("Notify the winning item to user successfully");
+        navigate("/dashboard");
       } catch (error) {
         toast.error(error);
       }
@@ -168,10 +169,10 @@ function Drawing() {
   };
 
   const uploadToDatabase = async () => {
-    if (remainingItems !== 0) {
-      alert("There are still undrawn items\nGo back and draw all items first");
-      return;
-    }
+    // if (remainingItems !== 0) {
+    //   alert("There are still undrawn items\nGo back and draw all items first");
+    //   return;
+    // }
     try {
       setIsUploading(true);
       const drawingResultsCopy = {

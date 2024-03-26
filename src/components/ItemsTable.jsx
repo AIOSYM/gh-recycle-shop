@@ -72,9 +72,9 @@ function ItemsTable({ tableData, allItems, activeUsers, eventID }) {
           </div>
         ) : (
           <div className="flex gap-4">
-            <button className="btn btn-primary" onClick={showResult}>
+            {/* <button className="btn btn-primary" onClick={showResult}>
               Show Result
-            </button>
+            </button> */}
             <button
               className="btn bg-red-600  hover:bg-red-700 text-white"
               onClick={handleResetResult}
