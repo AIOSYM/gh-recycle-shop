@@ -21,6 +21,10 @@ export default function AnnouncementForm() {
   const [date, setDate] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
+  const handleSelectChange = (event) => {
+    setPlatform(event.target.value);
+  };
+
   const documentPath = "2024/announcement";
   const handleEdit = async () => {
     if (!name || !email || !platform || !url || !date) {
@@ -101,11 +105,16 @@ export default function AnnouncementForm() {
       </label>
       <label className="flex flex-col gap-1">
         <span className="text-lg font-bold">Platform</span>
-        <textarea
+
+        <select
           value={platform}
-          onChange={(e) => setPlatform(e.target.value)}
-          className="border border-gray-300 rounded-md p-2 resize-none h-32"
-        ></textarea>
+          onChange={handleSelectChange}
+          className="select select-bordered w-full max-w-xs"
+        >
+          <option value="Google Meet">Google Meet</option>
+          <option value="Zoom">Zoom</option>
+          <option value="Microsoft Teams">Microsoft Teams</option>
+        </select>
       </label>
       <label className="flex flex-col gap-1">
         <span className="text-lg font-bold">URL</span>
