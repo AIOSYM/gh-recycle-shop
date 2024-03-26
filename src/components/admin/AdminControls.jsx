@@ -11,6 +11,10 @@ export const AdminControls = ({ allUsers }) => {
     navigate("/add-new-item");
   };
 
+  const handleUpdateAnnouncement = () => {
+    navigate("/announcement");
+  };
+
   const downloadEmailList = () => {
     const emailList = allUsers.map((user) => user.data.email);
     const csvContent = "data:text/csv;charset=utf-8," + emailList.join(",");
@@ -25,7 +29,7 @@ export const AdminControls = ({ allUsers }) => {
   return (
     <div className="px-4 py-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 text-neutral">
       <h1 className="text-2xl mb-4 self-start">Control</h1>
-      <div className="grid row-gap-8 gap-y-2 sm:grid-cols-3">
+      <div className="grid row-gap-8 gap-2 sm:grid-cols-3">
         <div className="text-center">
           <button className="btn btn-primary" onClick={handleViewAllItems}>
             View all items
@@ -39,6 +43,14 @@ export const AdminControls = ({ allUsers }) => {
         <div className="text-center">
           <button className="btn btn-primary" onClick={downloadEmailList}>
             Download Email list
+          </button>
+        </div>
+        <div className="text-center">
+          <button
+            className="btn btn-primary"
+            onClick={handleUpdateAnnouncement}
+          >
+            Change Announcement Info
           </button>
         </div>
       </div>

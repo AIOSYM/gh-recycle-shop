@@ -8,7 +8,7 @@ function ItemList() {
   const { items, itemsLoading, userLoading } = useContext(ItemContext);
 
   if (itemsLoading || userLoading) {
-    console.log("loading");
+    //console.log("loading");
     return null;
   }
 

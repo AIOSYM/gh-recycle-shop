@@ -14,6 +14,7 @@ import Dashboard from "./pages/Dashboard";
 import Drawing from "./pages/Drawing";
 import AddNewItem from "./pages/AddNewItem";
 import ViewAllItems from "./pages/ViewAllItems";
+import AnnouncementInfo from "./pages/AnnouncementInfo";
 
 function App() {
   return (
@@ -41,6 +42,9 @@ function App() {
           </Route>
           <Route path="/view-all-items" element={<PrivateRouteAdmin />}>
             <Route path="/view-all-items" element={<ViewAllItems />} />
+          </Route>
+          <Route path="/announcement" element={<PrivateRouteAdmin />}>
+            <Route path="/announcement" element={<AnnouncementInfo />} />
           </Route>
         </Routes>
       </Router>
