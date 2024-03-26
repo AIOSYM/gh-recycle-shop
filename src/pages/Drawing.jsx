@@ -10,7 +10,6 @@ import {
   collection,
   serverTimestamp,
   setDoc,
-  getDocs,
 } from "firebase/firestore";
 import { db } from "../firebase.config";
 import { toast } from "react-toastify";
@@ -139,36 +138,6 @@ function Drawing() {
       navigate(-1);
       return;
     }
-  };
-
-  // useEffect(() => {
-  //   clearAllUserWinningItems();
-  // }, []);
-
-  const getAllUsers = async () => {
-    const docsRef = collection(db, userCollectionPath);
-    const docsSnap = await getDocs(docsRef);
-    const docs = docsSnap.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-    docs.sort((a, b) => a.createdAt - b.createdAt);
-    setAllUsers(docs);
-    return docs;
-  };
-
-  // clear the winningItems for all user
-  const clearAllUserWinningItems = async () => {
-    const allUsers = await getAllUsers();
-
-    allUsers.forEach(async (user) => {
-      const userId = user.id;
-
-      const updatedData = { ...user, winningItems: [] };
-      try {
-        await setDoc(doc(db, userCollectionPath, userId), updatedData);
-        console.log("Clear all winning item!");
-      } catch (error) {
-        toast.error(error);
-      }
-    });
   };
 
   // update each user winningItems

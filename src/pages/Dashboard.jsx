@@ -17,6 +17,7 @@ function Dashboard() {
   const eventID = process.env.REACT_APP_EVENT_ID;
 
   const collectionPath = eventID;
+  const userCollectionPath = `${eventID}/users/users`;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -126,6 +127,7 @@ function Dashboard() {
         tableData={tableData}
         allItems={allItems}
         activeUsers={activeUsers}
+        userCollectionPath={userCollectionPath}
       />
     </div>
   );
