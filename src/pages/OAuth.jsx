@@ -8,7 +8,9 @@ import GoogleIcon from "../assets/svg/googleIcon.svg";
 function OAuth() {
   const navigate = useNavigate();
   const location = useLocation();
-  const userCollectionPath = "2024/users/users";
+  const eventID = process.env.REACT_APP_EVENT_ID;
+  console.log(eventID);
+  const userCollectionPath = `${eventID}/users/users`;
 
   const onGoogleClick = async () => {
     try {

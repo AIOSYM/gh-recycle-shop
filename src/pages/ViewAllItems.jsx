@@ -10,9 +10,10 @@ function ViewAllItems() {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [updateCount, setUpdateCount] = useState(0);
+  const eventID = process.env.REACT_APP_EVENT_ID;
 
   const navigate = useNavigate();
-  const collectionPath = "2024/items/items";
+  const collectionPath = `${eventID}/items/items`;
 
   const deleteItem = async (id) => {
     const isConfirm = window.confirm("Are you sure you want to delete this?");

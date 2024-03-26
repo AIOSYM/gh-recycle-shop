@@ -1,7 +1,8 @@
 import Modal from "./Modal";
 
 function TableRow({ id, data, deleteItem, setUpdateCount }) {
-  const itemCollectionName = "2024/items/items";
+  const eventID = process.env.REACT_APP_EVENT_ID;
+  const itemCollectionName = `${eventID}/items/items`;
 
   return (
     <>

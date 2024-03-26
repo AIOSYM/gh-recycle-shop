@@ -10,12 +10,13 @@ import WishListGrid from "../components/WishListGrid";
 
 function MyAccount() {
   const { user } = useAuthStatus();
+  const eventID = process.env.REACT_APP_EVENT_ID;
   const [userData, setUserData] = useState(null);
   const [allItems, setAllItems] = useState([]);
   const [loadItems, setLoadItems] = useState(true);
 
-  const itemCollectionPath = "2024/items/items";
-  const userCollectionPath = "2024/users/users";
+  const itemCollectionPath = `${eventID}/items/items`;
+  const userCollectionPath = `${eventID}/users/users`;
 
   useEffect(() => {
     const fetchItems = async () => {

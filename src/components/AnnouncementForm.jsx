@@ -20,12 +20,13 @@ export default function AnnouncementForm() {
   const [url, setURL] = useState("");
   const [date, setDate] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const eventID = process.env.REACT_APP_EVENT_ID;
 
   const handleSelectChange = (event) => {
     setPlatform(event.target.value);
   };
 
-  const documentPath = "2024/announcement";
+  const documentPath = `${eventID}/announcement`;
   const handleEdit = async () => {
     if (!name || !email || !platform || !url || !date) {
       if (window.confirm("Please enter the necessary fields.")) {

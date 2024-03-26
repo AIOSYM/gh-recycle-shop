@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { X } from "lucide-react";
 
 import {
   doc,
@@ -30,9 +31,10 @@ function Drawing() {
   const messageState = location.state;
   const { tableData, allItems, activeUsers } = messageState;
   const numAllItems = allItems.length;
+  const eventID = process.env.REACT_APP_EVENT_ID;
 
-  const userCollectionPath = "2024/users/users";
-  const resultCollectionPath = "2024/results/results";
+  const userCollectionPath = `${eventID}/users/users`;
+  const resultCollectionPath = `${eventID}/results/results`;
 
   useEffect(() => {
     const images = () => {
@@ -129,8 +131,10 @@ function Drawing() {
     setCurrentCatRef(newCurrentCatRef);
   };
 
-  const handleClick = async () => {
-    const result = window.confirm("Are you sure to go back to Dashboard?");
+  const handleCancelDrawing = async () => {
+    const result = window.confirm(
+      "Your result will not be saved. \nAre you sure you want to cancel?"
+    );
     if (result) {
       navigate(-1);
       return;
@@ -289,8 +293,14 @@ function Drawing() {
           Save result
         </button>
       )}
-      <button className="btn btn-warning mt-6" onClick={handleClick}>
-        Back to Dashboard
+      <button
+        className="btn bg-red-600 text-white mt-6 hover:bg-red-700"
+        onClick={handleCancelDrawing}
+      >
+        <span className="flex items-center">
+          <X className="w-6 h-6" />
+          Cancel Drawing
+        </span>
       </button>
     </div>
   );

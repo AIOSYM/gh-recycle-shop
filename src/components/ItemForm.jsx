@@ -29,8 +29,9 @@ function ItemForm({ submitType, id, setShowModal, setUpdateCount }) {
   const [images, setImages] = useState([]);
   const [photoPreview, setPhotoPreview] = useState([]);
   const [imageUrls, setImageUrls] = useState([]);
+  const eventID = process.env.REACT_APP_EVENT_ID;
 
-  const collectionPath = "2024/items/items";
+  const collectionPath = `${eventID}/items/items`;
   const collectionRef = collection(db, collectionPath);
 
   const MAX_WIDTH = 1080;

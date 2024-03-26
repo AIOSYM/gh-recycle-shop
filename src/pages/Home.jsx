@@ -6,19 +6,19 @@ import Step from "../components/Step";
 import ItemList from "../components/ItemList";
 import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
-import ScrollToAnchor from "../components/ScrollLink";
 
 function Home() {
   const { loggedIn, checkingStatus, user } = useAuthStatus();
+  const event_id = process.env.REACT_APP_EVENT_ID;
 
   return (
     user && (
-      <ItemProvider event="2024">
+      <ItemProvider eventID={event_id}>
         <div className="flex flex-col justify-start h-screen">
           <NavBar />
-          <Banner user={user} />
+          <Banner user={user} eventID={event_id}/>
           <Step />
-          <Announcement />
+          <Announcement eventID={event_id} />
           <ItemList />
           <Footer />
         </div>

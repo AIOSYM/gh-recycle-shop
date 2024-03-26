@@ -24,8 +24,9 @@ function SignUp() {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const key = searchParams.get("user");
+  const eventID = process.env.REACT_APP_EVENT_ID;
 
-  const userCollectionPath = "2024/users/users";
+  const userCollectionPath = `${eventID}/users/users`;
 
   const onChange = (e) => {
     setFormData((prevState) => ({

@@ -15,7 +15,7 @@ import { toast } from "react-toastify";
 
 const ItemContext = createContext();
 
-export const ItemProvider = ({ children, event }) => {
+export const ItemProvider = ({ children, eventID }) => {
   const [items, setItems] = useState([]);
   const [singleItem, setSingleItem] = useState(null);
   const [user, setUser] = useState(null);
@@ -24,8 +24,8 @@ export const ItemProvider = ({ children, event }) => {
   const [sendLoading, setSendLoading] = useState(true);
   const [userLoading, setUserLoading] = useState(true);
 
-  const itemCollectionPath = `${event}/items/items`;
-  const userCollectionPath = `2024/users/users`;
+  const itemCollectionPath = `${eventID}/items/items`;
+  const userCollectionPath = `${eventID}/users/users`;
 
   useEffect(() => {
     fetchItems();
@@ -62,7 +62,6 @@ export const ItemProvider = ({ children, event }) => {
 
   // fetching a user from firestore
   const fetchUserData = async () => {
-
     const auth = getAuth();
     setUser(auth.currentUser);
 

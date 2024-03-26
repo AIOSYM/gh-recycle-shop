@@ -1,4 +1,4 @@
-function Banner({ user }) {
+function Banner({ user, eventID }) {
   return (
     <section className="relative bg-white">
       <img
@@ -26,7 +26,7 @@ function Banner({ user }) {
           </h1>
 
           <p className="max-w-lg mt-4 sm:leading-relaxed sm:text-xl">
-            2024年度グローバルハウスのリサイクルイベント
+            {eventID}年度グローバルハウスのリサイクルイベント
           </p>
         </div>
       </div>

@@ -14,8 +14,9 @@ function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [tableData, setTableData] = useState([]);
   const [activeUsers, setActiveUsers] = useState(null);
+  const eventID = process.env.REACT_APP_EVENT_ID;
 
-  const collectionPath = "2024";
+  const collectionPath = eventID;
   const navigate = useNavigate();
 
   useEffect(() => {

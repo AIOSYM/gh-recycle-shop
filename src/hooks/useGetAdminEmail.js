@@ -6,11 +6,13 @@ export default function useGetAdminEmail() {
   const [adminEmails, setAdminEmails] = useState([]);
   const [isFetching, setIsFetching] = useState(true);
 
+  const eventID = process.env.REACT_APP_EVENT_ID;
+
   useEffect(() => {
     const getAdminEmails = async () => {
       try {
         const querySnapshot = await getDocs(
-          collection(db, "2024/admins/admins")
+          collection(db, `${eventID}/admins/admins`)
         );
         const adminEmails = [];
         querySnapshot.forEach((doc) => {

@@ -3,8 +3,8 @@ import { db } from "../firebase.config";
 import { getDoc, doc } from "firebase/firestore";
 import moment from "moment";
 
-function Announcement() {
-  const dataDocument = `2024/announcement`;
+function Announcement({eventID}) {
+  const dataDocument = `${eventID}/announcement`;
   const [announcement, SetAnnouncement] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
