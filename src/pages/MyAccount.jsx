@@ -20,7 +20,6 @@ function MyAccount() {
 
   useEffect(() => {
     const fetchItems = async () => {
-      //console.log("API CALL:MyAccount");
       try {
         const querySnap = await getDocs(collection(db, itemCollectionPath));
         const items = [];

@@ -1,16 +1,12 @@
 function WishListCard({ item, isGrantor }) {
   return (
-    <div className="card w-96 bg-base-100 shadow-xl image-full">
+    <div className="card bg-base-100 shadow-xl image-full">
       <figure>
         <img src={item.imageUrls[0]} alt="Item" />
       </figure>
       <div className="card-body">
-        <h2 className="card-title">
-          {item.name}
-          <div className="badge badge-secondary">{item.price}円</div>
-        </h2>
+        <p className="card-title text-xs">{item.name}</p>
 
-        <p>{item.description}</p>
         {isGrantor && (
           <div className="card-actions justify-end">
             <button className="btn btn-primary">You got this item!</button>
