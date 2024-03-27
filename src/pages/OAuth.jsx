@@ -9,7 +9,6 @@ function OAuth() {
   const navigate = useNavigate();
   const location = useLocation();
   const eventID = process.env.REACT_APP_EVENT_ID;
-  console.log(eventID);
   const userCollectionPath = `${eventID}/users/users`;
 
   const onGoogleClick = async () => {

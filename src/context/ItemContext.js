@@ -28,53 +28,49 @@ export const ItemProvider = ({ children, eventID }) => {
   const userCollectionPath = `${eventID}/users/users`;
 
   useEffect(() => {
+    const fetchItems = async () => {
+      try {
+        const itemsRef = collection(db, itemCollectionPath);
+        const q = query(itemsRef, orderBy("name", "asc"));
+
+        // Execute query
+        const querySnap = await getDocs(q);
+
+        const items = [];
+
+        querySnap.forEach((doc) => {
+          return items.push({
+            id: doc.id,
+            data: doc.data(),
+          });
+        });
+
+        setItems(items);
+        setItemsLoading(false);
+      } catch (error) {
+        toast.error("Could not fetch listings");
+      }
+    };
     fetchItems();
   }, []);
 
   useEffect(() => {
+    const fetchUserData = async () => {
+      const auth = getAuth();
+      setUser(auth.currentUser);
+
+      const docRef = doc(db, userCollectionPath, auth.currentUser.uid);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        setUserData(docSnap.data());
+        setUserLoading(false);
+      } else {
+        toast.error("Cannot fetch user");
+      }
+    };
     fetchUserData();
   }, []);
-
-  // fetching the data from firbase
-  const fetchItems = async () => {
-    try {
-      const itemsRef = collection(db, itemCollectionPath);
-      const q = query(itemsRef, orderBy("name", "asc"));
-
-      // Execute query
-      const querySnap = await getDocs(q);
-
-      const items = [];
-
-      querySnap.forEach((doc) => {
-        return items.push({
-          id: doc.id,
-          data: doc.data(),
-        });
-      });
-
-      setItems(items);
-      setItemsLoading(false);
-    } catch (error) {
-      toast.error("Could not fetch listings");
-    }
-  };
-
-  // fetching a user from firestore
-  const fetchUserData = async () => {
-    const auth = getAuth();
-    setUser(auth.currentUser);
-
-    const docRef = doc(db, userCollectionPath, auth.currentUser.uid);
-    const docSnap = await getDoc(docRef);
-
-    if (docSnap.exists()) {
-      setUserData(docSnap.data());
-      setUserLoading(false);
-    } else {
-      toast.error("Cannot fetch user");
-    }
-  };
 
   // fetch single item
   const fetchSingleItem = async (itemId) => {

@@ -20,7 +20,6 @@ function ItemsTable({ tableData, allItems, activeUsers, eventID }) {
       const status = await getDrawingStatus(eventID);
       setStatus(status);
       setIsLoading(false);
-      console.log(status);
     };
 
     getStatus();

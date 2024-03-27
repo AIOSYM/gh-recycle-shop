@@ -13,7 +13,6 @@ function ScrollToAnchor() {
     }
     if (lastHash.current && document.getElementById(lastHash.current)) {
       setTimeout(() => {
-        console.log("scrolling to", lastHash.current);
         document
           .getElementById(lastHash.current)
           ?.scrollIntoView({ behavior: "instant", block: "start" });

@@ -35,7 +35,6 @@ export const resetResults = async (userCollectionPath) => {
     const updatedData = { ...user, winningItems: [] };
     try {
       await setDoc(doc(db, userCollectionPath, userId), updatedData);
-      console.log("Clear all winning item!");
     } catch (error) {
       console.error(error);
     }

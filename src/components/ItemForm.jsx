@@ -125,7 +125,6 @@ function ItemForm({ submitType, id, setShowModal, setUpdateCount }) {
     if (images) {
       try {
         urls = await uploadPhotosAndGetUrls(images, collectionPath);
-        console.log("URLS", urls);
       } catch (error) {
         console.error("Failed to upload file. Error: ", error);
       }
@@ -168,15 +167,12 @@ function ItemForm({ submitType, id, setShowModal, setUpdateCount }) {
   };
 
   const handleEdit = async () => {
-    console.log({ name, imageUrls });
 
     if (!name || !quantity) {
       if (window.confirm("Please enter the necessary fields.")) {
         return;
       }
     }
-
-    console.log({ collectionRef, id });
     const documentRef = doc(collectionRef, id);
 
     let updatedData = {
@@ -188,9 +184,6 @@ function ItemForm({ submitType, id, setShowModal, setUpdateCount }) {
       imageUrls: imageUrls,
       updatedAt: serverTimestamp(),
     };
-
-    console.log("BEFORE", updatedData);
-
     // // Upload images to storage and get URLs
     let urls = [];
     if (images) {
@@ -207,7 +200,6 @@ function ItemForm({ submitType, id, setShowModal, setUpdateCount }) {
       }
     }
 
-    console.log(updatedData);
     try {
       await updateDoc(documentRef, updatedData);
       setShowModal(false);
