@@ -21,17 +21,20 @@ function ItemListRow({ id, data, status }) {
             </td>
           </>
         )}
-        <td className="px-4 py-2 text-gray-700 whitespace-nowrap">
-          {data.winningBy.map((user, index) => (
-            <p key={index}>{user.name}</p>
-          ))}
-        </td>
+
         {status === "done" && (
-          <td className="px-4 py-2 text-gray-700 whitespace-nowrap">
-            {data.winningBy.map((user, index) => (
-              <p key={index}>{user.email}</p>
-            ))}
-          </td>
+          <>
+            <td className="px-4 py-2 text-gray-700 whitespace-nowrap">
+              {data.winningBy.map((user, index) => (
+                <p key={index}>{user.name}</p>
+              ))}
+            </td>
+            <td className="px-4 py-2 text-gray-700 whitespace-nowrap">
+              {data.winningBy.map((user, index) => (
+                <p key={index}>{user.email}</p>
+              ))}
+            </td>
+          </>
         )}
       </tr>
     </>

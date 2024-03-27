@@ -108,13 +108,15 @@ function ItemsTable({ tableData, allItems, activeUsers, eventID }) {
                 </>
               )}
 
-              <th className="px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap">
-                Receiver
-              </th>
               {drawingStatus === "done" && (
-                <th className="px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap">
-                  Email
-                </th>
+                <>
+                  <th className="px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap">
+                    Receiver
+                  </th>
+                  <th className="px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap">
+                    Email
+                  </th>
+                </>
               )}
             </tr>
           </thead>
