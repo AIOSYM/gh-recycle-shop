@@ -25,7 +25,7 @@ function Drawing() {
   const location = useLocation();
   const navigate = useNavigate();
   const messageState = location.state;
-  const { tableData, allItems, activeUsers } = messageState;
+  const { tableData, allItems, activeUsers } = messageState; // get the data from the previous page via location.state
   const numAllItems = allItems.length;
   const remainingItems = numAllItems - Object.keys(drawingResults).length;
   const eventID = process.env.REACT_APP_EVENT_ID;
@@ -53,8 +53,8 @@ function Drawing() {
     const wantedBy = item.wantedBy;
     const available = item.quantity;
 
-    let receivedList = [...receivedParticipants];
-    let currentCatRefObj = { ...currentCatRef };
+    let receivedList = [...receivedParticipants]; // list to store all participants who already got an item
+    let currentCatRefObj = { ...currentCatRef }; 
     let prohibitedList = [];
 
     if (currentCatRef[catRef]) {

@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ItemListRow from "./ItemListRow";
-import { resetResults, getDrawingStatus, setDrawingStatus } from "../libs/firebase";
+import {
+  resetResults,
+  getDrawingStatus,
+  setDrawingStatus,
+} from "../libs/firebase";
 import { toast } from "react-toastify";
 
 function ItemsTable({ tableData, allItems, activeUsers, eventID }) {
@@ -42,7 +46,9 @@ function ItemsTable({ tableData, allItems, activeUsers, eventID }) {
   };
 
   const handleResetResult = async () => {
-    const confirm = window.confirm("Are you sure to reset the drawing result?");
+    const confirm = window.confirm(
+      "Caution: You will lost your current result.\nAre you sure to reset the drawing result?"
+    );
     if (!confirm) return;
 
     try {
@@ -71,16 +77,8 @@ function ItemsTable({ tableData, allItems, activeUsers, eventID }) {
             </button>
           </div>
         ) : (
-          <div className="flex gap-4">
-            {/* <button className="btn btn-primary" onClick={showResult}>
-              Show Result
-            </button> */}
-            <button
-              className="btn bg-red-600  hover:bg-red-700 text-white"
-              onClick={handleResetResult}
-            >
-              Reset result
-            </button>
+          <div className="font-bold text-xl text-center text-primary">
+            Drawing Result
           </div>
         )}
       </div>
@@ -99,25 +97,53 @@ function ItemsTable({ tableData, allItems, activeUsers, eventID }) {
               <th className="px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap">
                 Avaialbe Quantity
               </th>
-              <th className="px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap">
-                Popularity
-              </th>
-              <th className="px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap">
-                Candidates
-              </th>
+              {drawingStatus === "pending" && (
+                <>
+                  <th className="px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap">
+                    Popularity
+                  </th>
+                  <th className="px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap">
+                    Candidates
+                  </th>
+                </>
+              )}
+
               <th className="px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap">
                 Receiver
               </th>
+              {drawingStatus === "done" && (
+                <th className="px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap">
+                  Email
+                </th>
+              )}
             </tr>
           </thead>
 
           <tbody className="divide-y divide-gray-100">
             {tableData.map((rowData, index) => {
-              return <ItemListRow key={index} id={index} data={rowData} />;
+              return (
+                <ItemListRow
+                  key={index}
+                  id={index}
+                  data={rowData}
+                  status={drawingStatus}
+                />
+              );
             })}
           </tbody>
         </table>
       </div>
+
+      {drawingStatus === "done" && (
+        <div className="flex w-full gap-4 justify-center items-center my-4">
+          <button
+            className="btn bg-red-600  hover:bg-red-700 text-white"
+            onClick={handleResetResult}
+          >
+            Reset result
+          </button>
+        </div>
+      )}
     </div>
   );
 }

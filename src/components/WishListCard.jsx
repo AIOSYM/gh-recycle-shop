@@ -16,10 +16,10 @@ function WishListCard({ item, isGrantor, status }) {
         )}
 
         {status === "done" && !isGrantor && (
-          <div className="card-actions justify-end">
-            <button className="btn bg-red-500 hover:bg-red-600 text-white">
+          <div className="card-actions">
+            <p className="bg-red-500 hover:bg-red-600 text-white break-before-all p-2 rounded-md border-gray-200 border">
               Resut: Sorry, you didn't get this!
-            </button>
+            </p>
           </div>
         )}
       </div>

@@ -70,7 +70,7 @@ function Dashboard() {
               wantedBy.push(user.data.name);
             }
             if (user.data.winningItems.includes(item.id)) {
-              winningBy.push(user.data.name);
+              winningBy.push({ name: user.data.name, email: user.data.email });
             }
           });
           return tableData.push({

@@ -1,4 +1,4 @@
-function ItemListRow({ id, data }) {
+function ItemListRow({ id, data, status }) {
   return (
     <>
       <tr>
@@ -11,15 +11,28 @@ function ItemListRow({ id, data }) {
         <td className="px-4 py-2 text-gray-700 whitespace-nowrap">
           {data.quantity}
         </td>
+        {status === "pending" && (
+          <>
+            <td className="px-4 py-2 text-gray-700 whitespace-nowrap">
+              {data.popularity}
+            </td>
+            <td className="px-4 py-2 text-gray-700 whitespace-nowrap">
+              {data.wantedBy.join(",")}
+            </td>
+          </>
+        )}
         <td className="px-4 py-2 text-gray-700 whitespace-nowrap">
-          {data.popularity}
+          {data.winningBy.map((user, index) => (
+            <p key={index}>{user.name}</p>
+          ))}
         </td>
-        <td className="px-4 py-2 text-gray-700 whitespace-nowrap">
-          {data.wantedBy.join(",")}
-        </td>
-        <td className="px-4 py-2 text-gray-700 whitespace-nowrap">
-          {data.winningBy.join(",")}
-        </td>
+        {status === "done" && (
+          <td className="px-4 py-2 text-gray-700 whitespace-nowrap">
+            {data.winningBy.map((user, index) => (
+              <p key={index}>{user.email}</p>
+            ))}
+          </td>
+        )}
       </tr>
     </>
   );
