@@ -54,7 +54,7 @@ function Drawing() {
     const available = item.quantity;
 
     let receivedList = [...receivedParticipants]; // list to store all participants who already got an item
-    let currentCatRefObj = { ...currentCatRef }; 
+    let currentCatRefObj = { ...currentCatRef };
     let prohibitedList = [];
 
     if (currentCatRef[catRef]) {
@@ -208,12 +208,12 @@ function Drawing() {
 
   return (
     <div className="flex flex-col h-screen w-screen px-8 overflow-hidden items-center">
-      <h1 className="text-5xl my-4 font-bold text-center">
+      <h1 className="text-xl sm:text-5xl my-4 font-bold text-center">
         Drawing{` (${itemIndex + 1}/${tableData.length})`}
       </h1>
 
-      <div className="flex justify-between border-4 w-full p-4 mb-4">
-        <div className="flex flex-col gap-2 w-1/3">
+      <div className="flex flex-col md:flex-row justify-between border-4 w-full p-4 mb-4">
+        <div className="flex flex-col gap-2 md:w-1/3">
           {showSaveButton && itemIndex === numAllItems - 1 ? (
             <button
               className="btn btn-success w-full text-white"
@@ -267,16 +267,16 @@ function Drawing() {
         </div>
       </div>
 
-      <div className="flex overflow-y-scroll border-4 w-full my-4 p-4 gap-4">
+      <div className="flex flex-col md:flex-row overflow-y-scroll border-4 w-full my-4 p-4 gap-4">
         {/* left panel */}
-        <div className="flex flex-col flex-1 px-4 border-r-4">
+        <div className="flex flex-col flex-1 px-4 md:border-r-4">
           {drawingResults[itemIndex] &&
           drawingResults[itemIndex].results.length !== 0 ? (
             <div className="flex flex-col justify-center items-center w-full h-full">
-              <p className="font-bold text-center text-3xl">
+              <p className="font-bold text-center md:text-3xl">
                 Item: {tableData[itemIndex].name}
               </p>
-              <p className="font-bold text-2xl p-4">Congratulation!! 🎉🥳</p>
+              <p className="font-bold md:text-2xl p-4">Congratulation!! 🎉🥳</p>
               <div className="flex flex-col">
                 {drawingResults[itemIndex].results.map((user, index) => {
                   return (
