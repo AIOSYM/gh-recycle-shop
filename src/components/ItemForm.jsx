@@ -22,10 +22,10 @@ import { useCallback } from "react";
 
 function ItemForm({ submitType, id, setShowModal, setUpdateCount }) {
   const [name, setName] = useState("");
-  const [catRef, setCatRef] = useState("other");
+  const [catRef, setCatRef] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
-  const [quantity, setQuantity] = useState("");
+  const [quantity, setQuantity] = useState(0);
   const [images, setImages] = useState([]);
   const [photoPreview, setPhotoPreview] = useState([]);
   const [imageUrls, setImageUrls] = useState([]);
@@ -154,10 +154,10 @@ function ItemForm({ submitType, id, setShowModal, setUpdateCount }) {
 
     // Reset state
     setName("");
-    setCatRef("other");
+    setCatRef("");
     setDescription("");
     setPrice(0);
-    setQuantity("");
+    setQuantity(0);
     setImages([]);
     setImageUrls([]);
     setPhotoPreview([]);
@@ -167,7 +167,6 @@ function ItemForm({ submitType, id, setShowModal, setUpdateCount }) {
   };
 
   const handleEdit = async () => {
-
     if (!name || !quantity) {
       if (window.confirm("Please enter the necessary fields.")) {
         return;
@@ -257,7 +256,7 @@ function ItemForm({ submitType, id, setShowModal, setUpdateCount }) {
         />
       </label>
       <label className="flex flex-col gap-1">
-        <span className="text-lg font-bold">Category</span>
+        <span className="text-lg font-bold">Category*</span>
         <input
           type="text"
           value={catRef}
@@ -278,6 +277,7 @@ function ItemForm({ submitType, id, setShowModal, setUpdateCount }) {
         <input
           type="number"
           value={price}
+          min={0}
           onChange={(e) => setPrice(e.target.value)}
           className="border border-gray-300 rounded-md p-2"
         />
@@ -287,6 +287,7 @@ function ItemForm({ submitType, id, setShowModal, setUpdateCount }) {
         <input
           type="number"
           value={quantity}
+          min={0}
           onChange={(e) => setQuantity(e.target.value)}
           className="border border-gray-300 rounded-md p-2"
         />
