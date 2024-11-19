@@ -1,4 +1,4 @@
-# GH Recycle Shop
+# GH Recycle Shop [TO BE UPDATED]
 
 <p align="center">
   <img src="/src/assets/img/gh-logo.png" alt="Logo" title="GH Recycle Shop Logo"/>
