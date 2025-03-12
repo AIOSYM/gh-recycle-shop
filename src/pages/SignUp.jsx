@@ -95,7 +95,7 @@ function SignUp() {
               <form onSubmit={onSubmit}>
                 <label className="block text-sm">
                   <span className="text-gray-700 ">
-                    Name | 名前 (ロマン字のみ記入してください)
+                    Name | 名前 (ローマ字で入力してください)
                   </span>
                   <input
                     className="block w-full mt- text-sm focus:border-primary focus:outline-none focus:shadow-outline-primary  border-2 p-2 form-input"
@@ -149,7 +149,7 @@ function SignUp() {
                   className="text-sm font-medium text-primary hover:underline"
                 >
                   <span>Already had account?</span>　<br />
-                  <span>アカウントがもう持っている?</span>
+                  <span>アカウントをもう持っている?</span>
                 </Link>
               </p>
               <p className="mt-10 text-xs">
